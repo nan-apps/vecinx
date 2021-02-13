@@ -55,6 +55,10 @@
           <x-fa>edit</x-fa>
           Editar
         </a>
+        <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-info btn-sm">
+          <x-fa>list</x-fa>
+          Notas
+        </a>
       </td>
     </tr>
     @endforeach

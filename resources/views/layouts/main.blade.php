@@ -15,7 +15,7 @@
       
       <div class="card">
         <div class="card-header">
-          <h3 class="float-left" >
+          <h3 class="float-left header-title" >
             @yield('title')
           </h3>
           <div class="float-right" >

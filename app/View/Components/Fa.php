@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class Fa extends Component
 {
+  public $color;
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|string
-     */
-    public function render()
-    {
-        return view('components.fa');
-    }
+  public function __construct($color=NULL)
+  {
+    $this->color = $color;
+  }
+
+  public function render()
+  {
+    return view('components.fa');
+  }
 }

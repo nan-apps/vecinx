@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\NeighbourController;
+use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,11 +27,12 @@ Route::get('/', [HomeController::class, 'index'])
 ->name('home')
 ->middleware(['auth']);
 
-Route::resource('/members', MemberController::class)
+Route::resource('members', MemberController::class)
 ->middleware(['auth']);
 
-Route::resource('/neighbours', NeighbourController::class)
+Route::resource('neighbours', NeighbourController::class)
 ->middleware(['auth']);
 
-Route::resource('/notes', NeighbourController::class)
+Route::resource('neighbours.notes', NoteController::class)
+->scoped(['note' => 'id'])
 ->middleware(['auth']);

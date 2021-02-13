@@ -9,9 +9,9 @@
 @section('title'){{$title}}@endsection
 
 @section('header_buttons')
-<a href="{{route('neighbours.index')}}" class="btn btn-outline-success">
+<a href="{{route('neighbours.index')}}" class="btn btn-outline-secondary">
   <x-fa>caret-left</x-fa>
-  Volver
+  Volver al listado
 </a>
 @endsection
 @section('body')
@@ -71,7 +71,7 @@
     <hr />
 
     @if($neighbour->exists)
-      <h4>Agregar Nota</h4>
+      {{-- <h4>Agregar Nota</h4>
 
       <div class="form-group" >
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -87,12 +87,12 @@
         <textarea class="form-control" name="note[body]" ></textarea>
       </div>
 
-      <button href="{{route('notes.store')}}" class="btn btn-outline-primary btn-block">
+      <button href="{{route('neighbours.notes.store', $neighbour->id)}}" class="btn btn-outline-primary btn-block">
         <x-fa>check</x-fa>
         Guardar nota
       </button>
 
-      <hr />
+      <hr /> --}}
 
       <h4>Últimas Notas</h4>
 
@@ -107,9 +107,9 @@
         </p>
       @endforeach
 
-      <button href="{{route('notes.index')}}" class="btn btn-outline-primary btn-block">
+      <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-outline-primary btn-block">
         <x-fa>list</x-fa> Ver todas
-      </button>
+      </a>
     @endif
 
     

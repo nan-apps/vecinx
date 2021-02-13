@@ -42,4 +42,9 @@ class Neighbour extends Model
     return $this->name . ( $this->last_name ? " {$this->last_name}" : '' );
   }
 
+  public function fullAddress()
+  {
+    return $this->address. ($this->hood ? ", {$this->hood->name}" : '');  
+  }
+
 }

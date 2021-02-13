@@ -15,4 +15,9 @@ trait HasCommonScopes
     return $query->orderBy('name');
   }
 
+  public function scopeByNewest($query)
+  {
+    return $query->orderByDesc('created_at');
+  }
+
 }

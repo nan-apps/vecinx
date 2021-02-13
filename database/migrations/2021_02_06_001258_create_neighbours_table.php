@@ -42,7 +42,7 @@ class CreateNeighboursTable extends Migration
 
             Schema::create('notes', function (Blueprint $table) {
                 $table->id();
-                $table->string('body');
+                $table->text('body');
                 $table->foreignId('neighbour_id')->constrained('neighbours');
                 $table->timestamps();
                 $table->softDeletes($column = 'deleted_at', $precision = 0);
@@ -75,6 +75,10 @@ class CreateNeighboursTable extends Migration
 
         Schema::table('notes', function (Blueprint $table) {
           $table->foreignId('tag_id')->after('neighbour_id')->constrained('tags');
+        });
+
+        Schema::table('neighbours', function (Blueprint $table) {
+          $table->string('last_name')->after('name')->nullable();
         });
 
     }

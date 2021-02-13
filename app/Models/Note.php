@@ -10,8 +10,13 @@ class Note extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function tags()
+    public function tag()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsTo(Tag::class);
+    }
+
+    public function neighbour()
+    {
+        return $this->belongsTo(Neighbour::class);
     }
 }

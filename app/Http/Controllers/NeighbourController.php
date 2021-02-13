@@ -25,7 +25,7 @@ class NeighbourController extends Controller
     public function index()
     {
         return view('neighbours.index', [
-            'neighbours' => $this->model::all()
+            'neighbours' => $this->model->byName()->get()
         ]);
     }
 
@@ -51,8 +51,10 @@ class NeighbourController extends Controller
 
     public function edit($id)
     {
+        $neighbour = $this->getEditObject($id);
         return view('neighbours.edit', array_merge($this->getFormCollections(), [
-            'neighbour' => $this->getEditObject($id)
+            'neighbour' => $neighbour,
+            'notes' => $neighbour->notes
         ]));
     }
 

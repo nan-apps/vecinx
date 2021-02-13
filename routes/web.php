@@ -31,3 +31,6 @@ Route::resource('/members', MemberController::class)
 
 Route::resource('/neighbours', NeighbourController::class)
 ->middleware(['auth']);
+
+Route::resource('/notes', NeighbourController::class)
+->middleware(['auth']);

@@ -14,6 +14,7 @@
   <thead>
     <tr>
       <th scope="col">Nombre</th>
+      <th scope="col">Barrio</th>
       <th scope="col">Dirección</th>
       <th scope="col">Estado</th>
       <th scope="col">Acciones</th>
@@ -28,7 +29,7 @@
    @foreach ($neighbours as $neighbour)
     <tr>
       <td>
-        {{$neighbour->name}}
+        {{$neighbour->fullName()}}
         <br />
         @if($neighbour->phone)
             <span class="text-muted" >
@@ -37,7 +38,11 @@
             </span>
         @endif
       </td>
-      <td>{{$neighbour->address}}</td>
+      <td>{{$neighbour->hood ? $neighbour->hood->name : ''}}</td>
+      <td>
+        {{$neighbour->address}}<br/>
+        <span class="text-muted small" >{{$neighbour->address_notes}}</span>
+      </td>
       <td>
         @if($neighbour->enable)
         <span class="badge badge-primary"><x-fa>check</x-fa> ACTIVO</span>

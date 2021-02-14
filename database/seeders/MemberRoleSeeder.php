@@ -28,7 +28,6 @@ class MemberRoleSeeder extends Seeder
           'name' => "Recorre",
           'key' => 'walk'
         ],
-        
 
       ]);
     }

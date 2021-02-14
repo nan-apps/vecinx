@@ -45,8 +45,8 @@ class NeighbourController extends Controller
     public function store(NeighbourRequest $request)
     {
       $valid = $request->validated();
-      $this->model->create($request->all());
-      return redirect('/neighbours')->with('status', '¡Vecinx creado!');
+      $obj = $this->model->create($request->all());
+      return redirect()->route('neighbours.edit', $obj->id)->with('status', '¡Vecinx creado, ahora podes cargarle notas!');
     }
 
     public function edit($id)

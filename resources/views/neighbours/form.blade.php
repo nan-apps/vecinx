@@ -40,15 +40,20 @@
 
     <div class="row" >
       <div class="col-6" >
-        <x-form.input-text label="Fecha de Nac." name="birthdate" mode="date" :value="$neighbour->birthdate" />
+        <x-form.input-text 
+        label="Fecha de Nac." 
+        name="birthdate" 
+        mode="date" 
+        :value="$neighbour->birthdate"
+        placeholder="dd/mm/yyyy" />
       </div>
     </div>
     
     <div class="border-top mt-3 pt-3" >
       
-      <x-form.select label="Barrio" name="hood_id" :collection="$hoods" :selected="$neighbour->hood_id" />
-
       <x-form.input-text label="Dirección" name="address" :value="$neighbour->address" />
+
+      <x-form.select label="Barrio" name="hood_id" :collection="$hoods" :selected="$neighbour->hood_id" />
 
       <div class="row" >
         <div class="col-6" >
@@ -96,7 +101,7 @@
 
       <h4>Últimas Notas</h4>
 
-      @foreach($notes as $note)
+      @forelse($notes as $note)
         <p>
           <span class="text-muted" >{{$note->created_at}}</span>
           <badge class="badge badge-{{$note->tag->color}}" >
@@ -105,11 +110,24 @@
           <br />
           {{Illuminate\Support\Str::of($note->body)->substr(0, 100)}}...
         </p>
-      @endforeach
+      @empty
+      <x-fa>info-circle</x-fa>
+      <i>Aun no hay notas cargadas</i>
+      @endforelse
 
-      <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-outline-primary btn-block">
-        <x-fa>list</x-fa> Ver todas
-      </a>
+      <hr/>
+      <div class="row" >
+        <div class="col-6" >
+          <a href="{{route('neighbours.notes.create', $neighbour->id)}}" class="btn btn-outline-primary btn-block">
+            <x-fa>plus</x-fa> Agregar Nota
+          </a>
+        </div>
+        <div class="col-6" >
+          <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-outline-secondary btn-block">
+            <x-fa>list</x-fa> Ver todas
+          </a>
+        </div>
+      </div>
     @endif
 
     

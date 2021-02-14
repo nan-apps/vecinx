@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Hood;
 use App\Models\Traits\HasCommonScopes;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +12,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Neighbour extends Model
 {
   use HasFactory, SoftDeletes, HasCommonScopes;
+
+  // protected $casts = [
+  //   'birthdate' => 'date:d/m/Y',
+  // ];
 
   protected $fillable = [
     'name', 'last_name', 'id_number', 'address',
@@ -45,6 +50,16 @@ class Neighbour extends Model
   public function fullAddress()
   {
     return $this->address. ($this->hood ? ", {$this->hood->name}" : '');  
+  }
+
+  public function getBirthdateAttribute($value)
+  {
+    return Carbon::parse($value)->format('d/m/Y');
+  }
+
+  public function setBirthdateAttribute($value)
+  {
+    return $this->attributes['birthdate'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
   }
 
 }

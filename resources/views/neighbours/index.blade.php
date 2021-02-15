@@ -5,7 +5,7 @@
 @section('header_buttons')
 <a href="{{route('neighbours.create')}}" class="btn btn-success">
   <x-fa>plus</x-fa>
-  Agregar vecinx!
+  Agregar vecinx!!
 </a>
 @endsection
 

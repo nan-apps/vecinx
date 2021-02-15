@@ -23,7 +23,7 @@ class DeployController extends Controller
 				echo "¡Éxito!";
 				echo $process->getOutput();
 			} else {
-				echo "Algo salió mal!"
+				echo "Algo salió mal!";
 				echo $process->getErrorOutput();
 			}
 		}

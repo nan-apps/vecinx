@@ -1,6 +1,6 @@
 @extends('layouts.common')
 
-@section('title') Vecinxs @endsection
+@section('title') Listado de Vecinxs @endsection
 
 @section('header_buttons')
 <a href="{{route('neighbours.create')}}" class="btn btn-success">

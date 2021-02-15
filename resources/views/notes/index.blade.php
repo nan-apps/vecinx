@@ -13,6 +13,7 @@
   <x-fa>plus</x-fa>
   Agregar Nota
 </a>
+
 <a href="{{route('neighbours.edit', $neighbour->id)}}" class="btn btn-outline-secondary">
   <x-fa>caret-left</x-fa>
   Volver al vecinx
@@ -37,7 +38,7 @@
 </form>
 
 <hr />
-<table class="table table-hover">
+<table class="table table-hover table-responsive">
   <thead>
     <tr>
       <th scope="col" style="width: 120px;"> Fecha</th>

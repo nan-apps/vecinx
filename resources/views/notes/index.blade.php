@@ -22,23 +22,25 @@
 
 @section('body')
 
-<form method="GET" action="{{route('neighbours.notes.index', $neighbour->id)}}" >
-  <div class="form-group" >
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <label class="btn btn-sm btn-outline-dark">
-        <input type="radio" class="submit-on-click" name="tag_id" value="" {{!$tagId ? 'checked' : ''}} > Todas
-      </label>
-      @foreach($tags as $tag)
-      <label class="btn btn-sm btn-outline-{{$tag->color}}">
-        <input type="radio" class="submit-on-click" name="tag_id" value="{{$tag->id}}" {{$tag->id == $tagId ? 'checked' : ''}}> {{$tag->name}}
-      </label>
-      @endforeach
+@if($notes->isNotEmpty())
+  <form method="GET" action="{{route('neighbours.notes.index', $neighbour->id)}}" >
+    <div class="form-group" >
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-sm btn-outline-dark">
+          <input type="radio" class="submit-on-click" name="tag_id" value="" {{!$tagId ? 'checked' : ''}} > Todas
+        </label>
+        @foreach($tags as $tag)
+        <label class="btn btn-sm btn-outline-{{$tag->color}}">
+          <input type="radio" class="submit-on-click" name="tag_id" value="{{$tag->id}}" {{$tag->id == $tagId ? 'checked' : ''}}> {{$tag->name}}
+        </label>
+        @endforeach
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+@endif
 
 <hr />
-<table class="table table-hover table-responsive">
+<table class="table table-hover table-responsive-md">
   <thead>
     <tr>
       <th scope="col" style="width: 120px;"> Fecha</th>

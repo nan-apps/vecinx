@@ -162,6 +162,7 @@ return [
         'hood_id' => 'Barrio',
         'birthdate' => 'Cumpleaños',
         'enable' => '¿Activo?',
+        'tag_id' => 'Categoría',
     ],
 
 ];

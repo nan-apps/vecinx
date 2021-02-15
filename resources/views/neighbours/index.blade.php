@@ -10,7 +10,7 @@
 @endsection
 
 @section('body')
-<table class="table table-hover table-responsive">
+<table class="table table-hover table-responsive-md">
   <thead>
     <tr>
       <th scope="col">Nombre</th>

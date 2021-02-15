@@ -29,6 +29,7 @@
   <div class="col-md-8 border-right" >
 
     <div class="form-group" >
+      <label class="" >Categoría</label><br />
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
         @foreach($tags as $tag)
         <label class="btn btn-outline-{{$tag->color}}">

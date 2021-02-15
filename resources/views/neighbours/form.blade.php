@@ -21,25 +21,25 @@
   <div class="col-md-8 border-right" >
 
     <div class="row" >
-      <div class="col-6" >
+      <div class="col-md-6" >
         <x-form.input-text label="Nombre" name="name" :value="$neighbour->name" />
       </div>
-      <div class="col-6" >
+      <div class="col-md-6" >
         <x-form.input-text label="Apellido" name="last_name" :value="$neighbour->last_name" />
       </div>
     </div>
 
     <div class="row" >
-      <div class="col-6" >
+      <div class="col-md-6" >
         <x-form.input-text label="Dni" name="id_number" :value="$neighbour->id_number" />
       </div>
-      <div class="col-6" >
+      <div class="col-md-6" >
         <x-form.input-text label="Teléfono" name="phone" :value="$neighbour->phone" />
       </div>
     </div>
 
     <div class="row" >
-      <div class="col-6" >
+      <div class="col-md-6" >
         <x-form.input-text 
         label="Fecha de Nac." 
         name="birthdate" 
@@ -56,10 +56,10 @@
       <x-form.select label="Barrio" name="hood_id" :collection="$hoods" :selected="$neighbour->hood_id" />
 
       <div class="row" >
-        <div class="col-6" >
+        <div class="col-md-6" >
           <x-form.input-text label="Latitud" name="lat" :value="$neighbour->lat" />
         </div>
-        <div class="col-6" >
+        <div class="col-md-6" >
           <x-form.input-text label="Longitud" name="lng" :value="$neighbour->lng" />
         </div>
       </div>

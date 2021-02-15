@@ -55,10 +55,10 @@
    @foreach ($notes as $note)
     <tr>
       <td>
-        {{date('d/m/Y', strtotime($note->created_at))}}<br/>
+        {{$note->created_at->format('d/m/Y')}}<br/>
         <span class="text-muted small" >
           <x-fa>clock</x-fa>
-          {{date('H:i', strtotime($note->created_at))}}
+          {{$note->created_at->format('H:i')}}
         </span>
       </td>
       <td>

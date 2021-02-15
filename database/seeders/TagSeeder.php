@@ -19,22 +19,22 @@ class TagSeeder extends Seeder
         [
           'name' => 'Salud',
           'key' => 'health',
-          'color' => '#007bff'
+          'color' => 'primary'
         ],
         [
           'name' => 'Trámites',
           'key' => 'formalities',
-          'color' => '#28a745'
+          'color' => 'secondary'
         ],
         [
           'name' => 'Laboral',
           'key' => 'job',
-          'color' => '#ffc107'
+          'color' => 'success'
         ],
         [
           'name' => 'Educación',
           'key' => 'edication',
-          'color' => '#17a2b8'
+          'color' => 'info'
         ]
 
       ]);

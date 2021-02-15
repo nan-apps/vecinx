@@ -38,15 +38,15 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                           <li class="nav-item">
-                              <a class="nav-link {{\Request::segment(1) == 'members' ? 'active' : ''}}" href="{{route('members.index')}}">Voluntarixs</a>
+                              <a class="nav-link {{\Request::segment(1) == 'neighbours' ? 'active' : ''}}" aria-current="page" href="{{route('neighbours.index')}}">Listado de Vecinxs</a>
                           </li>
-                          <li class="nav-item">
-                              <a class="nav-link {{\Request::segment(1) == 'neighbours' ? 'active' : ''}}" aria-current="page" href="{{route('neighbours.index')}}">Vecinxs</a>
+                          {{-- <li class="nav-item">
+                              <a class="nav-link {{\Request::segment(1) == 'members' ? 'active' : ''}}" href="{{route('members.index')}}">Voluntarixs</a>
                           </li>
                           <li class="nav-item">
                               <a class="nav-link" href="#">Tareas
                               </a>
-                          </li>
+                          </li> --}}
                         @endauth
                     </ul>
 

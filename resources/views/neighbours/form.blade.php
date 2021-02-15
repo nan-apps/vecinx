@@ -103,10 +103,10 @@
 
       @forelse($notes as $note)
         <p>
-          <span class="text-muted" >{{$note->created_at}}</span>
           <badge class="badge badge-{{$note->tag->color}}" >
             {{$note->tag->name}}
           </badge>
+          <span class="text-muted" >{{$note->created_at->format("d/m/Y H:i")}}</span>
           <br />
           {{Illuminate\Support\Str::of($note->body)->substr(0, 100)}}...
         </p>

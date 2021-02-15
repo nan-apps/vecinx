@@ -25,7 +25,7 @@
   <div class="form-group" >
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
       <label class="btn btn-sm btn-outline-dark">
-        <input type="radio" class="submit-on-click" name="tag_id" value="" {{!$tagId ? 'checked' : ''}} > Todos
+        <input type="radio" class="submit-on-click" name="tag_id" value="" {{!$tagId ? 'checked' : ''}} > Todas
       </label>
       @foreach($tags as $tag)
       <label class="btn btn-sm btn-outline-{{$tag->color}}">

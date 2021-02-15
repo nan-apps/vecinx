@@ -117,16 +117,21 @@
 
       <hr/>
       <div class="row" >
-        <div class="col-6" >
+        <div class="col" >
           <a href="{{route('neighbours.notes.create', $neighbour->id)}}" class="btn btn-outline-primary btn-block">
             <x-fa>plus</x-fa> Agregar Nota
           </a>
         </div>
-        <div class="col-6" >
-          <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-outline-secondary btn-block">
-            <x-fa>list</x-fa> Ver todas
-          </a>
-        </div>
+
+
+        @if($notes->isNotEmpty())
+          <div class="col" >
+            <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-outline-secondary btn-block">
+              <x-fa>list</x-fa> Ver todas
+            </a>
+          </div>
+        @endif
+
       </div>
     @endif
 

@@ -52,6 +52,7 @@ class NeighbourController extends Controller
     public function edit($id)
     {
         $neighbour = $this->getEditObject($id);
+
         return view('neighbours.edit', array_merge($this->getFormCollections(), [
             'neighbour' => $neighbour,
             'notes' => $neighbour->notes()->byNewest()->take(5)->get()

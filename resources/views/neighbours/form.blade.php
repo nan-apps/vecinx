@@ -99,7 +99,12 @@
 
       <hr /> --}}
 
-      <h4>Últimas Notas</h4>
+      <h4>
+        Últimas Notas
+        <a href="{{route('neighbours.notes.create', $neighbour->id)}}" class="btn btn-outline-primary float-right btn-sm">
+          <x-fa>plus</x-fa> Agregar Nota
+        </a>
+      </h4>
 
       @forelse($notes as $note)
         <p>
@@ -116,23 +121,12 @@
       @endforelse
 
       <hr/>
-      <div class="row" >
-        <div class="col" >
-          <a href="{{route('neighbours.notes.create', $neighbour->id)}}" class="btn btn-outline-primary btn-block">
-            <x-fa>plus</x-fa> Agregar Nota
-          </a>
-        </div>
+      @if($notes->isNotEmpty())
+        <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-outline-secondary btn-block">
+          <x-fa>list</x-fa> Ver todas
+        </a>
+      @endif
 
-
-        @if($notes->isNotEmpty())
-          <div class="col" >
-            <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-outline-secondary btn-block">
-              <x-fa>list</x-fa> Ver todas
-            </a>
-          </div>
-        @endif
-
-      </div>
     @endif
 
     

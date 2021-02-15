@@ -18,6 +18,7 @@ class DeployController extends Controller
 			echo "sha ok!";
 			$root_path = base_path();
 			$process = new Process(["cd {$root_path}", './deploy.sh']);
+			$process->run();
 			echo $process->isSuccessful() ? "Exito!" : "Algo salió mal";
 			echo $process->getOutput();
 		}

@@ -19,6 +19,8 @@ return [
     'admin_email' => env('APP_ADMIN_EMAIL'),
     'admin_password' => env('APP_ADMIN_PASSWORD'),
 
+    'deploy_secret' => env('APP_DEPLOY_SECRET'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

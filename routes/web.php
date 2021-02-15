@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Auth::routes();
+Route::post('deploy', 'DeployController@deploy');
 
 Route::get('/', [HomeController::class, 'index'])
 ->name('home')

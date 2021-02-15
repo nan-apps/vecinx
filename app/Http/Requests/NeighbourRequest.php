@@ -29,6 +29,7 @@ class NeighbourRequest extends FormRequest
             'address' => ['required'],
             'lat' => ['required'],
             'lng' => ['required'],
+            'hood_id' => ['required'],
             'birthdate' => ['date_format:d/m/Y'],
         ];
     }

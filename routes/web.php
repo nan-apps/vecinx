@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DeployController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\NeighbourController;
@@ -23,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Auth::routes();
-Route::post('deploy', [DeployController::class, 'deploy']);
 
 Route::get('/', [HomeController::class, 'index'])
 ->name('home')

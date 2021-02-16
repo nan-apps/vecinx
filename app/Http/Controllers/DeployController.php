@@ -10,9 +10,7 @@ class DeployController extends Controller
 {
 	public function deploy(Request $request)
 	{
-		die(getenv('PATH'));
-
-		
+		putenv('PATH=/usr/local/bin');
 		$githubPayload = $request->getContent();
 		$githubHash = $request->header('X-Hub-Signature');
 		$localToken = config('app.deploy_secret');

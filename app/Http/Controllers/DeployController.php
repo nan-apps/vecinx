@@ -11,6 +11,7 @@ class DeployController extends Controller
 	public function deploy(Request $request)
 	{
 		die(getenv('PATH'));
+
 		
 		$githubPayload = $request->getContent();
 		$githubHash = $request->header('X-Hub-Signature');

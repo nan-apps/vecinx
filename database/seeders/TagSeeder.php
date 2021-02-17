@@ -19,7 +19,7 @@ class TagSeeder extends Seeder
         [
           'name' => 'Salud',
           'key' => 'health',
-          'color' => 'primary'
+          'color' => 'danger'
         ],
         [
           'name' => 'Trámites',
@@ -33,9 +33,14 @@ class TagSeeder extends Seeder
         ],
         [
           'name' => 'Educación',
-          'key' => 'edication',
+          'key' => 'education',
           'color' => 'info'
-        ]
+        ],
+        [
+          'name' => 'General',
+          'key' => 'general',
+          'color' => 'primary'
+        ],
 
       ]);
     }

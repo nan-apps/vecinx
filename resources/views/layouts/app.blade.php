@@ -40,6 +40,9 @@
                           <li class="nav-item">
                               <a class="nav-link {{\Request::segment(1) == 'neighbours' ? 'active' : ''}}" aria-current="page" href="{{route('neighbours.index')}}">Listado de Vecinxs</a>
                           </li>
+                          <li class="nav-item">
+                              <a class="nav-link {{\Request::segment(1) == 'notes' ? 'active' : ''}}" aria-current="page" href="{{route('notes.index')}}">Listado de Notas</a>
+                          </li>
                           {{-- <li class="nav-item">
                               <a class="nav-link {{\Request::segment(1) == 'members' ? 'active' : ''}}" href="{{route('members.index')}}">Voluntarixs</a>
                           </li>

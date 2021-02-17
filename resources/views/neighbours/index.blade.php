@@ -3,7 +3,7 @@
 @section('title') Listado de Vecinxs @endsection
 
 @section('header_buttons')
-<a href="{{route('neighbours.create')}}" class="btn btn-success">
+<a href="{{route('neighbours.create')}}" class="btn btn-primary">
   <x-fa>plus</x-fa>
   Agregar vecinx
 </a>
@@ -45,17 +45,17 @@
       </td>
       <td>
         @if($neighbour->enable)
-        <span class="badge badge-primary"><x-fa>check</x-fa> ACTIVO</span>
+        <span class="badge badge-success"><x-fa>check</x-fa> ACTIVO</span>
         @else
         <span class="badge badge-danger"><x-fa>times</x-fa> INACTIVO</span>
         @endif
       </td>
       <td>
-        <a href="{{route('neighbours.edit', ['neighbour' => $neighbour])}}" class="btn btn-success btn-sm">
+        <a href="{{route('neighbours.edit', $neighbour)}}" class="btn btn-primary btn-sm">
           <x-fa>edit</x-fa>
           Editar
         </a>
-        <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-info btn-sm">
+        <a href="{{route('neighbours.notes.index', $neighbour)}}" class="btn btn-secondary btn-sm">
           <x-fa>list</x-fa>
           Notas
         </a>

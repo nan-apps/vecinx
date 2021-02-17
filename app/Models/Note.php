@@ -23,10 +23,18 @@ class Note extends Model
         return $this->belongsTo(Neighbour::class);
     }
 
-    public function scopeByTagId($query, $tagId=NULL)
+    public function scopeByTag($query, Tag $tag=NULL)
     {
-        if($tagId)
-            return $query->where('tag_id', $tagId);
+        if($tag)
+            return $query->where('tag_id', $tag->id);
+        else
+            return $query;
+    }
+
+    public function scopeByNeighbour($query, Neighbour $neighbour=NULL)
+    {
+        if($neighbour)
+            return $query->where('neighbour_id', $neighbour->id);
         else
             return $query;
     }

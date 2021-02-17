@@ -33,6 +33,11 @@ Route::resource('members', MemberController::class)
 Route::resource('neighbours', NeighbourController::class)
 ->middleware(['auth']);
 
-Route::resource('neighbours.notes', NoteController::class)
-->scoped(['note' => 'id'])
+Route::get('notes', [NoteController::class, 'index'])
+->name('notes.index')
 ->middleware(['auth']);
+
+Route::resource('neighbours.notes', NoteController::class)
+->scoped()
+->middleware(['auth']);
+

@@ -13,9 +13,9 @@ class Neighbour extends Model
 {
   use HasFactory, SoftDeletes, HasCommonScopes;
 
-  // protected $casts = [
-  //   'birthdate' => 'date:d/m/Y',
-  // ];
+  protected $attributes = [
+    'enable' => true
+  ];
 
   protected $fillable = [
     'name', 'last_name', 'id_number', 'address',

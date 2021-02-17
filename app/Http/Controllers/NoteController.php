@@ -11,98 +11,85 @@ use Illuminate\Support\Facades\Session;
 
 class NoteController extends Controller
 {
-  private $model;
+  private $request;
+  private $noteModel;
   private $neighbourModel;
   private $tagModel;
 
-  public function __construct(Note $model, Neighbour $neighbourModel, Tag $tagModel)
+  public function __construct(
+    Request $request, 
+    Note $noteModel, 
+    Neighbour $neighbourModel, 
+    Tag $tagModel)
   {
-    $this->model = $model;
+    $this->request = $request;
+    $this->noteModel = $noteModel;
     $this->neighbourModel = $neighbourModel;
     $this->tagModel = $tagModel;
   }
 
-  public function index(Request $request, $neighbourId)
+  public function index(Neighbour $neighbour=NULL)
   {
-    $neighbour = $this->neighbourModel->find($neighbourId);
-    return view('notes.index', [
+    return view(($neighbour ? 'neighbours.notes.index' : 'notes.index'), [
       'neighbour' => $neighbour,
-      'notes' => $this->getNeighbourNotes($request, $neighbour),
+      'notes' => $this->getFilteredNotes($neighbour),
       'tags' => $this->tagModel->byName()->get(),
-      'tagId' => $request->input('tag_id')
+      'tagId' => $this->request->input('tag_id')
     ]);
   }
 
-    private function getNeighbourNotes($request, $neighbour)
-    {
-      return $neighbour
-        ->notes()
-        ->byNewest()
-        ->byTagId($request->input('tag_id'))
-        ->get();
-    }
-
-  public function create($neighbourId)
+  public function create(Neighbour $neighbour)
   {
-    $neighbour = $this->neighbourModel->find($neighbourId);
-    return view('notes.create', [
+    return view('neighbours.notes.create', $this->getFormAttributes($neighbour, $this->noteModel));
+  }
+  
+  public function store(NoteRequest $request, Neighbour $neighbour)
+  {
+    $this->noteModel->neighbour_id = $neighbour->id;
+    $this->noteModel->fill($request->all())->save();
+    return $this->redirectToIndex($neighbour, 'Nota creada!');
+  }
+  
+  public function edit(Neighbour $neighbour, Note $note)
+  {
+    return view('neighbours.notes.edit', $this->getFormAttributes($neighbour, $note));
+  }
+
+
+  public function update(NoteRequest $request, Neighbour $neighbour, Note $note)
+  {
+    $note->update($request->all());
+    return $this->redirectToIndex($neighbour, 'Nota actualizada!');
+  }
+
+  public function destroy(Neighbour $neighbour, Note $note)
+  {
+    $note->delete();
+    return $this->redirectToIndex($neighbour, 'Nota borrada!');
+  }
+
+  private function getFilteredNotes($neighbour=NULL)
+  {
+    return $this->noteModel
+    ->byNewest()
+    ->byTag($this->tagModel->find($this->request->input('tag_id')))
+    ->byNeighbour($neighbour)
+    ->get();
+  }
+
+  private function getFormAttributes(Neighbour $neighbour, Note $note)
+  {
+    return [
       'neighbour' => $neighbour,
-      'note' => $this->getCreateObject(),
+      'note' => $this->request->old() ? $note->fill($this->request->old()) : $note,
       'tags' => $this->tagModel->byName()->get()
-    ]);
+    ];
   }
 
-    private function getCreateObject()
-    {
-      $data = Session::hasOldInput() ? Session::getOldInput() : [];
-      return new Note($data);
-    }
-
-  public function store(NoteRequest $request, $neighbourId)
+  private function redirectToIndex(Neighbour $neighbour, $statusMsg)
   {
-    $valid = $request->validated();
-    $this->model->create(array_merge(['neighbour_id' => $neighbourId], $request->all()));
-    return $this->redirectToIndex($neighbourId, 'Nota creada!');
+    return redirect()->route('neighbours.notes.index', [$neighbour])->with('status', $statusMsg);
   }
-
-  public function edit($neighbourId, $id)
-  {
-    $neighbour = $this->neighbourModel->find($neighbourId);
-    return view('notes.edit', [
-      'neighbour' => $neighbour,
-      'note' => $this->getEditObject($id),
-      'tags' => $this->tagModel->byName()->get()
-    ]);
-  }
-
-    private function getEditObject($id)
-    {
-      $obj = $this->model->find($id);
-      if(Session::hasOldInput()){
-        $obj->fill(Session::getOldInput());
-      }
-      return $obj;
-    }
-
-  public function update(NoteRequest $request, $neighbourId, $id)
-  {
-    $valid = $request->validated();
-    $obj = $this->model->find($id);
-    $obj->update($request->all());
-    return $this->redirectToIndex($neighbourId, 'Nota actualizada!');
-  }
-
-  public function destroy($neighbourId, $id)
-  {
-    $obj = $this->model->find($id);
-    $obj->delete();
-    return $this->redirectToIndex($neighbourId, 'Nota borrada!');
-  }
-
-    private function redirectToIndex($neighbourId, $statusMsg)
-    {
-      return redirect()->route('neighbours.notes.index', [$neighbourId])->with('status', $statusMsg);
-    }
 
 
 

@@ -11,79 +11,79 @@ use Illuminate\Support\Facades\Session;
 
 class NeighbourController extends Controller
 {
-    protected $model;
-    protected $hoodModel;
-    private $tagModel;
+  protected $request;
+  protected $neighbourModel;
+  protected $hoodModel;
+  protected $tagModel;
 
-    function __construct(Neighbour $model, Hood $hoodModel, Tag $tagModel)
-    {
-        $this->model = $model;
-        $this->hoodModel = $hoodModel;
-        $this->tagModel = $tagModel;
+  function __construct(
+    Request $request,
+    Neighbour $neighbourModel,
+    Hood $hoodModel,
+    Tag $tagModel)
+  {
+    $this->request = $request;
+    $this->neighbourModel = $neighbourModel;
+    $this->hoodModel = $hoodModel;
+    $this->tagModel = $tagModel;
+  }
+
+  public function index()
+  {
+    return view('neighbours.index', [
+      'neighbours' => $this->neighbourModel->byName()->get()
+    ]);
+  }
+
+  public function create()
+  {
+    return view('neighbours.create', array_merge($this->getFormCollections(), [
+      'neighbour' => $this->fillModel($this->neighbourModel)
+    ]));
+  }
+
+  public function store(NeighbourRequest $request)
+  {
+    $this->save($request, $this->neighbourModel);
+    return redirect()->route('neighbours.edit', $this->neighbourModel)->with('status', '¡Vecinx creadx, ahora podes cargarle notas!');
+  }
+
+  public function edit(Neighbour $neighbour)
+  {
+    return view('neighbours.edit', array_merge($this->getFormCollections(), [
+      'neighbour' => $this->fillModel($neighbour),
+      'notes' => $neighbour->notes()->byNewest()->take(5)->get()
+    ]));
+  }
+
+  public function update(NeighbourRequest $request, Neighbour $model)
+  {
+    $this->save($request, $model);
+    return redirect()->route('neighbours.index')->with('status', '¡Vecinx actualizadx!');
+  }
+
+  protected function fillModel(Neighbour $model)
+  {
+    if($this->request->old()){
+      $model->enable = $this->request->old('enable');
+      $model->fill($this->request->old());
     }
+    return $model;
+  }
 
-    public function index()
-    {
-        return view('neighbours.index', [
-            'neighbours' => $this->model->byName()->get()
-        ]);
-    }
+  protected function save(NeighbourRequest $request, Neighbour $model)
+  {
+    $this->neighbourModel->enable = $request->boolean('enable');
+    $this->neighbourModel->fill($request->all())->save();
+  }
 
-    public function create()
-    {
-        return view('neighbours.create', array_merge($this->getFormCollections(), [
-            'neighbour' => $this->getCreateObject()
-        ]));
-    }
+  protected function getFormCollections()
+  {
+    return [
+      'hoods' => $this->hoodModel->enable()->byName()->get(),
+      'tags' => $this->tagModel->byName()->get(),
+    ];
+  }
 
-        private function getCreateObject()
-        {
-            $data = Session::hasOldInput() ? Session::getOldInput() : ['enable' => TRUE];
-            return new Neighbour($data);
-        }
 
-    public function store(NeighbourRequest $request)
-    {
-      $valid = $request->validated();
-      $obj = $this->model->create($request->all());
-      return redirect()->route('neighbours.edit', $obj->id)->with('status', '¡Vecinx creado, ahora podes cargarle notas!');
-    }
-
-    public function edit($id)
-    {
-        $neighbour = $this->getEditObject($id);
-
-        return view('neighbours.edit', array_merge($this->getFormCollections(), [
-            'neighbour' => $neighbour,
-            'notes' => $neighbour->notes()->byNewest()->take(5)->get()
-        ]));
-    }
-
-        private function getEditObject($id)
-        {
-            $neighbour = $this->model->find($id);
-            if(Session::hasOldInput()){
-                $neighbour->fill(Session::getOldInput());
-            }
-            return $neighbour;
-        }
-
-    public function update(NeighbourRequest $request, $id)
-    {
-      $valid = $request->validated();
-      $obj = $this->model->find($id);
-      $obj->enable = $request->boolean('enable');
-      $obj->update($request->all());
-      return redirect('/neighbours')->with('status', '¡Vecinx actualizadox');
-    }
-
-    private function getFormCollections()
-    {
-        return [
-            'hoods' => $this->hoodModel->enable()->byName()->get(),
-            'tags' => $this->tagModel->byName()->get(),
-        ];
-    }
-
-    
 }

@@ -11,7 +11,7 @@ Listado de Notas de {{$neighbour->fullName()}}<br/>
 @endsection
 
 @section('header_buttons')
-<a href="{{route('neighbours.notes.create', $neighbour->id)}}" class="btn btn-success">
+<a href="{{route('neighbours.notes.create', $neighbour->id)}}" class="btn btn-primary">
   <x-fa>plus</x-fa>
   Agregar Nota
 </a>
@@ -71,8 +71,8 @@ Listado de Notas de {{$neighbour->fullName()}}<br/>
       </td>
       <td>{{$note->body}}</td>
       <td>
-        <a href="{{route('neighbours.notes.edit', [$note->neighbour_id, $note->id])}}" class="btn btn-success btn-sm btn-icon" title="Editar">
-          <x-fa>edit</x-fa>
+        <a href="{{route('neighbours.notes.edit', [$note->neighbour_id, $note->id])}}" class="btn btn-primary btn-sm" title="Editar">
+          <x-fa>edit</x-fa> Editar
         </a>
       </td>
     </tr>

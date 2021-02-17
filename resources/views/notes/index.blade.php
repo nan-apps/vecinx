@@ -29,7 +29,7 @@
       <th scope="col">Categoría</th>
       <th scope="col" style="width: 120px;"> Vecinx</th>
       <th scope="col">Nota</th>
-      <th scope="col" style="width: 300px;">Acciones</th>
+      <th scope="col" style="width: 100px;">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -62,12 +62,12 @@
         <a href="{{route('neighbours.notes.edit', [$note->neighbour_id, $note->id])}}" class="btn btn-primary btn-sm btn-icon" title="Editar">
           <x-fa>edit</x-fa> Editar
         </a>
-        <a href="{{route('neighbours.notes.create', [$note->neighbour_id])}}" class="btn btn-secondary btn-sm btn-icon" title="Agregarle nota a estx vecinx">
+        {{-- <a href="{{route('neighbours.notes.create', [$note->neighbour_id])}}" class="btn btn-secondary btn-sm btn-icon" title="Agregarle nota a estx vecinx">
           <x-fa>plus</x-fa> Agregar
         </a>
         <a href="{{route('neighbours.notes.index', [$note->neighbour_id])}}" class="btn btn-warning btn-sm btn-icon" title="Agregarle nota a estx vecinx">
           <x-fa>list</x-fa> Ver sus notas
-        </a>
+        </a> --}}
       </td>
     </tr>
     @endforeach

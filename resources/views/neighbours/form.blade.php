@@ -9,9 +9,9 @@
 @section('title'){{$title}}@endsection
 
 @section('header_buttons')
-<a href="{{route('neighbours.index')}}" class="btn btn-outline-secondary">
+<a href="{{url()->previous()}}" class="btn btn-link">
   <x-fa>caret-left</x-fa>
-  Volver al listado
+  Volver
 </a>
 @endsection
 @section('body')

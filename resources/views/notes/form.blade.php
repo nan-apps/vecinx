@@ -12,9 +12,9 @@
 @endsection
 
 @section('header_buttons')
-<a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-outline-secondary">
+<a href="{{url()->previous()}}" class="btn btn-link">
   <x-fa>caret-left</x-fa>
-  Volver al listado de notas
+  Volver
 </a>
 
 @if($note->exists)

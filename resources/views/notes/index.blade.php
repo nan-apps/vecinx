@@ -2,7 +2,7 @@
 
 @section('title')
   @if($neighbour)
-    Listado de Notas de {{$neighbour->fullName()}}<br/>
+    Notas de {{$neighbour->fullName()}}<br/>
     <small class="text-muted" >
       <x-fa>home</x-fa> {{$neighbour->fullAddress()}}<br />
       <x-fa>phone</x-fa> {{$neighbour->phone ?? 'No registrado'}}
@@ -16,7 +16,7 @@
   @if($neighbour)
     <a href="{{route('neighbours.notes.create', $neighbour->id)}}" class="btn btn-primary">
       <x-fa>plus</x-fa>
-      Agregar Nota
+      Agregarle Nota
     </a>
     <a href="{{route('neighbours.edit', $neighbour->id)}}" class="btn btn-secondary">
       <x-fa>user</x-fa>

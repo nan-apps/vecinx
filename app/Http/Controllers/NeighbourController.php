@@ -56,25 +56,25 @@ class NeighbourController extends Controller
     ]));
   }
 
-  public function update(NeighbourRequest $request, Neighbour $model)
+  public function update(NeighbourRequest $request, Neighbour $neighbour)
   {
-    $this->save($request, $model);
+    $this->save($request, $neighbour);
     return redirect()->route('neighbours.index')->with('status', '¡Vecinx actualizadx!');
   }
 
-  protected function fillModel(Neighbour $model)
+  protected function fillModel(Neighbour $neighbour)
   {
     if($this->request->old()){
-      $model->enable = $this->request->old('enable');
-      $model->fill($this->request->old());
+      $neighbour->enable = $this->request->old('enable');
+      $neighbour->fill($this->request->old());
     }
-    return $model;
+    return $neighbour;
   }
 
-  protected function save(NeighbourRequest $request, Neighbour $model)
+  protected function save(NeighbourRequest $request, Neighbour $neighbour)
   {
-    $this->neighbourModel->enable = $request->boolean('enable');
-    $this->neighbourModel->fill($request->all())->save();
+    $neighbour->enable = $request->boolean('enable');
+    $neighbour->fill($request->all())->save();
   }
 
   protected function getFormCollections()

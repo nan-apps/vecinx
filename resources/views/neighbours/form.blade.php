@@ -1,7 +1,7 @@
 @extends('layouts.form')
 
 @push('scripts')
-  <script src="{{ asset('js/neighbour_form.js') }}" defer></script>
+  <script src="{{ asset('js/neighbour_form.js') }}"></script>
 @endpush
 
 @section('action'){{$action}}@endsection

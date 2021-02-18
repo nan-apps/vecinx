@@ -1,7 +1,9 @@
 require('leaflet')
 require('./bootstrap');
-require('./OSMLocationPicker');
 require('bootstrap-select');
+require('./OSMLocationPicker');
+require('./VecinxsMap');
+
 
 
 $(function(){

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\NeighbourController;
 use App\Http\Controllers\NoteController;
@@ -41,3 +42,6 @@ Route::resource('neighbours.notes', NoteController::class)
 ->scoped()
 ->middleware(['auth']);
 
+Route::get('map', [MapController::class, 'index'])
+->name('map.index')
+->middleware(['auth']);

@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
 
     <!-- Fonts -->
@@ -42,6 +42,9 @@
                           </li>
                           <li class="nav-item">
                               <a class="nav-link {{\Request::segment(1) == 'notes' ? 'active' : ''}}" aria-current="page" href="{{route('notes.index')}}">Listado de Notas</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link {{\Request::segment(1) == 'map' ? 'active' : ''}}" aria-current="page" href="{{route('map.index')}}">Mapa general</a>
                           </li>
                           {{-- <li class="nav-item">
                               <a class="nav-link {{\Request::segment(1) == 'members' ? 'active' : ''}}" href="{{route('members.index')}}">Voluntarixs</a>

@@ -92,7 +92,7 @@ class NoteController extends Controller
 
   private function redirectToIndex(Neighbour $neighbour, $statusMsg)
   {
-    return redirect()->route('notes.index', [$neighbour])->with('status', $statusMsg);
+    return redirect()->route('neighbours.notes.index', [$neighbour])->with('status', $statusMsg);
   }
 
 

@@ -6,6 +6,7 @@ $(function(){
 
   let map = new VecinxsMap({
     container: 'vecinxs-map',
+    neighbourDataTemplate: 'map-vecinx-template',
     lat: lat,
     lng: lng,
     zoom: 14

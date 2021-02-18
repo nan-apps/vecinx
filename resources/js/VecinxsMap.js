@@ -34,7 +34,11 @@ window.VecinxsMap = class VecinxsMap{
   }
 
   popUpContent(markerData){
-    return "Hola soy " + markerData.name;
+    let html = $("#" + this.options["neighbourDataTemplate"]).find(".content").html();
+    ["name", "phone", "address"].forEach(key => {
+      html = html.replace("%"+key+"%", (markerData[key] || "--"));
+    });
+    return html;
   }
 
 

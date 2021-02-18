@@ -17,8 +17,11 @@ class NeighbourResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->fullName(),
+            'address' => $this->fullAddress(),
+            'phone' => $this->phone,
             'lat' => $this->lat,
             'lng' => $this->lng,
+            'editPath' => '',
         ];
     }
 }

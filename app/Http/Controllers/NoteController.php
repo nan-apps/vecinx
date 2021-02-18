@@ -30,17 +30,21 @@ class NoteController extends Controller
 
   public function index(Neighbour $neighbour=NULL)
   {
-    return view(($neighbour ? 'neighbours.notes.index' : 'notes.index'), [
+    if($this->request->input('neighbour_id'))
+      $neighbour = $this->neighbourModel->find($this->request->input('neighbour_id'));
+
+    return view('notes.index', [
       'neighbour' => $neighbour,
       'notes' => $this->getFilteredNotes($neighbour),
       'tags' => $this->tagModel->byName()->get(),
-      'tagId' => $this->request->input('tag_id')
+      'neighbours' => $this->neighbourModel->byName()->get(),
+      'tagId' => $this->request->input('tag_id'),
     ]);
   }
 
   public function create(Neighbour $neighbour)
   {
-    return view('neighbours.notes.create', $this->getFormAttributes($neighbour, $this->noteModel));
+    return view('notes.create', $this->getFormAttributes($neighbour, $this->noteModel));
   }
   
   public function store(NoteRequest $request, Neighbour $neighbour)
@@ -52,7 +56,7 @@ class NoteController extends Controller
   
   public function edit(Neighbour $neighbour, Note $note)
   {
-    return view('neighbours.notes.edit', $this->getFormAttributes($neighbour, $note));
+    return view('notes.edit', $this->getFormAttributes($neighbour, $note));
   }
 
 
@@ -88,7 +92,7 @@ class NoteController extends Controller
 
   private function redirectToIndex(Neighbour $neighbour, $statusMsg)
   {
-    return redirect()->route('neighbours.notes.index', [$neighbour])->with('status', $statusMsg);
+    return redirect()->route('notes.index', [$neighbour])->with('status', $statusMsg);
   }
 
 

@@ -1,10 +1,12 @@
 <div class="form-group">
-	<label for="{{$name}}">{{$label}}</label>
-	<select name="{{$name}}" id="{{$name}}" class="form-control @error($name) is-invalid @enderror" >
-		<option value="" >Seleccione...</option>
+	@if($label)
+		<label for="{{$name}}">{{$label}}</label>
+	@endif
+	<select data-live-search="true" name="{{$name}}" id="{{$name}}" class="selectpicker form-control @error($name) is-invalid @enderror {{$cssClasses ?? ''}}" >
+		<option value="" >{{$placeholder ?? 'Seleccione...'}}</option>
 		@foreach ($collection as $object)
 			<option value="{{$object->id}}" {{ $selected == $object->id ? "selected" : "" }} >
-				{{$object->name}}
+				{{$getNameFunc ? $getNameFunc($object) : $object->name}}
 			</option>
 		@endforeach
 	</select>

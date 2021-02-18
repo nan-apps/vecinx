@@ -9,11 +9,14 @@
 @section('title'){{$title}}@endsection
 
 @section('header_buttons')
-<a href="{{url()->previous()}}" class="btn btn-link">
-  <x-fa>caret-left</x-fa>
-  Volver
+
+<a href="{{route('notes.index', ['neighbour_id' => $neighbour->id])}}" class="btn btn-primary">
+  <x-fa>list</x-fa> Administrar sus notas
 </a>
+
 @endsection
+
+
 @section('body')
 
 <div class="row" >
@@ -99,11 +102,8 @@
 
       <hr /> --}}
 
-      <h4>
+      <h4 class="" >
         Últimas Notas
-        <a href="{{route('neighbours.notes.create', $neighbour->id)}}" class="btn btn-outline-primary float-right btn-sm">
-          <x-fa>plus</x-fa> Agregar Nota
-        </a>
       </h4>
 
       @forelse($notes as $note)
@@ -120,13 +120,6 @@
       <i>Aun no hay notas cargadas</i>
       @endforelse
 
-      <hr/>
-      @if($notes->isNotEmpty())
-        <a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-outline-secondary btn-block">
-          <x-fa>list</x-fa> Ver todas
-        </a>
-      @endif
-
     @endif
 
     
@@ -140,7 +133,7 @@
   Guardar
 </button>
 
-<a href="{{route('neighbours.index')}}" class="btn btn-link">
+<a href="{{url()->previous()}}" class="btn btn-link">
   Cancelar
 </a>
 @endsection

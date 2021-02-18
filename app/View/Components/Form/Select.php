@@ -11,13 +11,19 @@ class Select extends Component
     public $name;
     public $selected;
     public $collection;
+    public $placeholder;
+    public $getNameFunc;
+    public $cssClasses;
 
-    function __construct($label, $name, $selected=NULL, $collection=NULL)
+    function __construct($name, $label=NULL, $selected=NULL, $collection=NULL, $placeholder=NULL, $getNameFunc=NULL, $cssClasses=NULL)
     {
-        $this->label = $label;
         $this->name = $name;
+        $this->label = $label;
         $this->selected = $selected;
         $this->collection = $collection;
+        $this->placeholder = $placeholder;
+        $this->getNameFunc = $getNameFunc;
+        $this->cssClasses = $cssClasses;
     }
 
     /**

@@ -1,23 +1,62 @@
 @extends('layouts.common')
 
 @section('title')
-  Listado General de Notas
+  @if($neighbour)
+    Listado de Notas de {{$neighbour->fullName()}}<br/>
+    <small class="text-muted" >
+      <x-fa>home</x-fa> {{$neighbour->fullAddress()}}<br />
+      <x-fa>phone</x-fa> {{$neighbour->phone ?? 'No registrado'}}
+    </small>
+  @else
+    Listado General de Notas
+  @endif
+@endsection
+
+@section('header_buttons')
+  @if($neighbour)
+    <a href="{{route('neighbours.notes.create', $neighbour->id)}}" class="btn btn-primary">
+      <x-fa>plus</x-fa>
+      Agregar Nota
+    </a>
+    <a href="{{route('neighbours.edit', $neighbour->id)}}" class="btn btn-secondary">
+      <x-fa>user</x-fa>
+      Editar vecinx
+    </a>
+  @endif
 @endsection
 
 @section('body')
 
   <form method="GET" action="{{route('notes.index')}}" >
-    <div class="form-group" >
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-sm btn-outline-dark">
-          <input type="radio" class="submit-on-click" name="tag_id" value="" {{!$tagId ? 'checked' : ''}} > Todas
-        </label>
-        @foreach($tags as $tag)
-        <label class="btn btn-sm btn-outline-{{$tag->color}}">
-          <input type="radio" class="submit-on-click" name="tag_id" value="{{$tag->id}}" {{$tag->id == $tagId ? 'checked' : ''}}> {{$tag->name}}
-        </label>
-        @endforeach
+    <div class="row" >
+      <div class="col-md-6" >
+        <label>Categoría</label>
+        <div class="form-group" >
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-sm btn-outline-dark">
+              <input type="radio" class="submit-on-click" name="tag_id" value="" {{!$tagId ? 'checked' : ''}} > Todas
+            </label>
+            @foreach($tags as $tag)
+            <label class="btn btn-sm btn-outline-{{$tag->color}}">
+              <input type="radio" class="submit-on-click" name="tag_id" value="{{$tag->id}}" {{$tag->id == $tagId ? 'checked' : ''}}> {{$tag->name}}
+            </label>
+            @endforeach
+          </div>
+        </div>
       </div>
+      
+      <div class="col-md-6" >
+        <x-form.select 
+          label="Notas de:" 
+          placeholder="Todxs" 
+          name="neighbour_id"
+          css-classes="submit-on-change"
+          :collection="$neighbours" 
+          :selected="$neighbour ? $neighbour->id : ''"
+          :getNameFunc="function($n){ return $n->fullName(); }"
+           />
+      </div>
+      
     </div>
   </form>
 
@@ -27,7 +66,9 @@
     <tr>
       <th scope="col" style="width: 120px;"> Fecha</th>
       <th scope="col">Categoría</th>
-      <th scope="col" style="width: 120px;"> Vecinx</th>
+      @unless($neighbour)
+        <th scope="col" style="width: 120px;"> Vecinx</th>
+      @endunless
       <th scope="col">Nota</th>
       <th scope="col" style="width: 100px;">Acciones</th>
     </tr>
@@ -52,11 +93,13 @@
           {{$note->tag->name}}
         </span>
       </td>
+      @unless($neighbour)
       <td>
         <a href="{{route('neighbours.edit', $note->neighbour)}}" >
           {{$note->neighbour->fullName()}}
         </a>
       </td>
+      @endunless
       <td>{{$note->body}}</td>
       <td>
         <a href="{{route('neighbours.notes.edit', [$note->neighbour_id, $note->id])}}" class="btn btn-primary btn-sm btn-icon" title="Editar">

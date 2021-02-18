@@ -57,7 +57,7 @@
 <button type="submit" class="btn btn-primary">
   Guardar
 </button>
-<a href="{{route('neighbours.notes.index', $neighbour->id)}}" class="btn btn-link">
+<a href="{{url()->previous()}}" class="btn btn-link">
   Cancelar
 </a>
 

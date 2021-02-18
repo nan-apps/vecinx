@@ -20,7 +20,7 @@
     </a>
     <a href="{{route('neighbours.edit', $neighbour->id)}}" class="btn btn-secondary">
       <x-fa>user</x-fa>
-      Editar datos de 
+      Editar datos de {{$neighbour->name}}
     </a>
   @endif
 @endsection

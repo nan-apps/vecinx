@@ -45,9 +45,9 @@
       </td>
       <td>
         @if($neighbour->enable)
-        <span class="badge badge-success"><x-fa>check</x-fa> ACTIVO</span>
+        <button class="btn btn-sm btn-success"><x-fa>check</x-fa> Activo</button>
         @else
-        <span class="badge badge-danger"><x-fa>times</x-fa> INACTIVO</span>
+        <button class="btn btn-sm btn-danger"><x-fa>times</x-fa> Inactivo</button>
         @endif
       </td>
       <td>

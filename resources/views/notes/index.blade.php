@@ -20,7 +20,7 @@
     </a>
     <a href="{{route('neighbours.edit', $neighbour->id)}}" class="btn btn-secondary">
       <x-fa>user</x-fa>
-      Editar vecinx
+      Editar datos de 
     </a>
   @endif
 @endsection
@@ -64,10 +64,10 @@
 <table class="table table-hover table-responsive-md">
   <thead>
     <tr>
-      <th scope="col" style="width: 120px;"> Fecha</th>
+      <th scope="col" style=""> Fecha</th>
       <th scope="col">Categoría</th>
       @unless($neighbour)
-        <th scope="col" style="width: 120px;"> Vecinx</th>
+        <th scope="col" style=""> Vecinx</th>
       @endunless
       <th scope="col">Nota</th>
       <th scope="col" style="width: 100px;">Acciones</th>
@@ -82,6 +82,11 @@
    @foreach ($notes as $note)
     <tr>
       <td>
+        @if($note->created_at->isToday()) 
+          <span class="badge badge-warning" >
+            Hoy
+          </span>
+        @endif
         {{$note->created_at->format('d/m/Y')}}<br/>
         <span class="text-muted small" >
           <x-fa>clock</x-fa>

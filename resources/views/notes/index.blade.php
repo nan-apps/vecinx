@@ -27,10 +27,23 @@
 
 @section('body')
 
-  <form method="GET" action="{{route('notes.index')}}" >
+  <form method="GET" action="{{route('notes.index')}}" class="" >
     <div class="row" >
       <div class="col-md-6" >
-        <label>Categoría</label>
+
+        <x-form.buttons-switch 
+          label="Categoría" 
+          name="tag_id" 
+          :collection="$tags" 
+          :selected="$tagId"
+          size="sm"
+          all-button="Todas"
+          input-classes="submit-on-click"
+        />
+        
+      </div>
+
+       {{--  <label>Categoría</label>
         <div class="form-group" >
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-sm btn-outline-dark">
@@ -43,7 +56,7 @@
             @endforeach
           </div>
         </div>
-      </div>
+      </div> --}}
       
       <div class="col-md-6" >
         <x-form.select 

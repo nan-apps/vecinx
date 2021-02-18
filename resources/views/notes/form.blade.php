@@ -28,21 +28,9 @@
 
   <div class="col-md-8 border-right" >
 
-    <div class="form-group" >
-      <label class="" >Categoría</label><br />
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        @foreach($tags as $tag)
-        <label class="btn btn-outline-{{$tag->color}}">
-          <input type="radio" name="tag_id" value="{{$tag->id}}" {{$tag->id == $note->tag_id ? 'checked' : ''}} > {{$tag->name}}
-        </label>
-        @endforeach
-      </div>
-        @error('tag_id') <x-fa color="danger" >exclamation-circle</x-fa> @enderror
-    </div>
+    <x-form.buttons-switch label="Categoría" name="tag_id" :collection="$tags" :selected="$note->tag_id" />
 
-    <div class="form-group">
-      <x-form.textarea label="Nota" name="body" >{{$note->body}}</x-form.textarea>
-    </div>
+    <x-form.textarea label="Nota" name="body" >{{$note->body}}</x-form.textarea>
 
   </div>
 

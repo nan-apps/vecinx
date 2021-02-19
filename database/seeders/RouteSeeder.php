@@ -18,35 +18,35 @@ class RouteSeeder extends Seeder
       DB::table('routes')->insert(
       [
         [
-          'name' => 'Recorrido 1',
+          'name' => '1',
           'key' => 'route-1',
           'color' => 'danger',
           'created_at' => Carbon::now(),
           'updated_at' => Carbon::now(),
         ],
         [
-          'name' => 'Recorrido 2',
+          'name' => '2',
           'key' => 'route-2',
           'color' => 'secondary',
           'created_at' => Carbon::now(),
           'updated_at' => Carbon::now(),
         ],
         [
-          'name' => 'Recorrido 3',
+          'name' => '3',
           'key' => 'route-3',
           'color' => 'success',
           'created_at' => Carbon::now(),
           'updated_at' => Carbon::now(),
         ],
         [
-          'name' => 'Recorrido 4',
+          'name' => '4',
           'key' => 'route-4',
           'color' => 'info',
           'created_at' => Carbon::now(),
           'updated_at' => Carbon::now(),
         ],
         [
-          'name' => 'Recorrido 5',
+          'name' => '5',
           'key' => 'route-5',
           'color' => 'primary',
           'created_at' => Carbon::now(),

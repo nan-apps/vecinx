@@ -18,7 +18,12 @@ class CreateRoutesTable extends Migration
             $table->string('name')->unique();
             $table->string('key')->unique();
             $table->string('color');
+            $table->boolean('enable')->default(1);
             $table->timestamps();
+        });
+
+        Schema::table('neighbours', function (Blueprint $table) {
+          $table->foreignId('route_id')->nullable()->after('birthdate')->constrained('routes');
         });
     }
 
@@ -30,5 +35,8 @@ class CreateRoutesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('routes');
+        Schema::table('neighbours', function (Blueprint $table) {
+            $table->dropColumn('route_id');
+        });
     }
 }

@@ -10,9 +10,11 @@
 
 @section('header_buttons')
 
-<a href="{{route('notes.index', ['neighbour_id' => $neighbour->id])}}" class="btn btn-primary">
-  <x-fa>list</x-fa> Administrar sus notas
-</a>
+@if($neighbour->exists)
+  <a href="{{route('notes.index', ['neighbour_id' => $neighbour->id])}}" class="btn btn-primary">
+    <x-fa>list</x-fa> Administrar sus notas
+  </a>
+@endif
 
 @endsection
 
@@ -76,6 +78,14 @@
   <div class="col-md-4" >
     <h4>Opciones</h4>
     <x-form.check-box label="¿Activo?" name="enable" :checked="$neighbour->enable" />
+
+    <x-form.buttons-switch 
+    label="Recorrido" 
+    name="route_id" 
+    :collection="$routes" 
+    :selected="$neighbour->route_id" 
+    size="" />
+
     <hr />
 
     @if($neighbour->exists)

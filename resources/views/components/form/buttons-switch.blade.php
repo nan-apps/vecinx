@@ -3,7 +3,7 @@
   <label>{{$label}}</label><br />
   @endif
   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    @if($allButton)
+    @if(!empty($allButton))
     <label class="btn btn-sm btn-outline-dark">
       <input type="radio" class="{{$inputClasses ?? ''}}" name="{{$name}}" value="" {{!$selected ? 'checked' : ''}} /> {{$allButton}}
     </label>

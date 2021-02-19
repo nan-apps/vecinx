@@ -6,12 +6,12 @@ use App\Models\Traits\HasCommonScopes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Route extends Model
 {
   use HasFactory, HasCommonScopes;
 
-  public function notes()
+  public function neighbours()
   {
-    return $this->hasMany(Note::class);
+    return $this->hasMany(Neighbour::class);
   }
 }

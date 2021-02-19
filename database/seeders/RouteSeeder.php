@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TagSeeder extends Seeder
+class RouteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,27 +20,37 @@ class TagSeeder extends Seeder
         [
           'name' => 'Recorrido 1',
           'key' => 'route-1',
-          'color' => 'danger'
+          'color' => 'danger',
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now(),
         ],
         [
           'name' => 'Recorrido 2',
           'key' => 'route-2',
-          'color' => 'secondary'
+          'color' => 'secondary',
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now(),
         ],
         [
           'name' => 'Recorrido 3',
           'key' => 'route-3',
-          'color' => 'success'
+          'color' => 'success',
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now(),
         ],
         [
           'name' => 'Recorrido 4',
           'key' => 'route-4',
-          'color' => 'info'
+          'color' => 'info',
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now(),
         ],
         [
           'name' => 'Recorrido 5',
           'key' => 'route-5',
-          'color' => 'primary'
+          'color' => 'primary',
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now(),
         ],
 
       ]);

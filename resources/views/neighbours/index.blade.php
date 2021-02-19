@@ -10,9 +10,30 @@
 @endsection
 
 @section('body')
+
+  <form method="GET" action="{{route('neighbours.index')}}" class="" >
+    <div class="row" >
+      <div class="col-md-6" >
+
+        <x-form.buttons-switch
+          label="Recorrido" 
+          name="route_id" 
+          :collection="$routes" 
+          :selected="$routeId"
+          size="sm"
+          all-button="Todos"
+          input-classes="submit-on-click"
+        />
+        
+      </div>
+      
+    </div>
+  </form>
+
 <table class="table table-hover table-responsive-md">
   <thead>
     <tr>
+      <th scope="col">Recorrido</th>
       <th scope="col">Nombre</th>
       <th scope="col">Barrio</th>
       <th scope="col">Dirección</th>
@@ -28,6 +49,11 @@
     @endif
    @foreach ($neighbours as $neighbour)
     <tr>
+      <td>
+        <span class="badge badge-{{$neighbour->route->color}}" >
+          {{$neighbour->route->name}}
+        </span>
+      </td>
       <td>
         {{$neighbour->fullName()}}
         <br />

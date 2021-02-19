@@ -163,6 +163,7 @@ return [
         'birthdate' => 'Cumpleaños',
         'enable' => '¿Activo?',
         'tag_id' => 'Categoría',
+        'route_id' => 'Recorrido'
     ],
 
 ];

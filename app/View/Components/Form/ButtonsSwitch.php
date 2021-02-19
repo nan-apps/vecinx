@@ -4,7 +4,7 @@ namespace App\View\Components\Form;
 
 use Illuminate\View\Component;
 
-class ButtonsSwtich extends Component
+class ButtonsSwitch extends Component
 {
     
     public $label;

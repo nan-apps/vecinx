@@ -20,12 +20,18 @@ class Neighbour extends Model
   protected $fillable = [
     'name', 'last_name', 'id_number', 'address',
     'phone', 'birthdate', 'enable',
-    'lat', 'lng', 'hood_id', 'address_notes'
+    'lat', 'lng', 'hood_id', 'address_notes',
+    'route_id'
   ];
 
   public function hood()
   {
     return $this->belongsTo(Hood::class);
+  }
+
+  public function route()
+  {
+    return $this->belongsTo(Route::class);
   }
 
   public function addresses()
@@ -41,6 +47,14 @@ class Neighbour extends Model
   public function scopeByName($query)
   {
     return $query->orderBy('name')->orderBy('last_name');
+  }
+
+  public function scopeByRoute($query, Route $route=null)
+  {
+    if($route)
+      return $query->where('route_id', $route->id);
+    else
+      return $query;
   }
 
   public function fullName(){

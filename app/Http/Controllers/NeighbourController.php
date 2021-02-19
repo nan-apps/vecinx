@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NeighbourRequest;
 use App\Models\Hood;
 use App\Models\Neighbour;
+use App\Models\Route;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -15,23 +16,29 @@ class NeighbourController extends Controller
   protected $neighbourModel;
   protected $hoodModel;
   protected $tagModel;
+  private $routeModel;
 
   function __construct(
     Request $request,
     Neighbour $neighbourModel,
     Hood $hoodModel,
-    Tag $tagModel)
+    Tag $tagModel,
+    Route $routeModel
+  )
   {
     $this->request = $request;
     $this->neighbourModel = $neighbourModel;
     $this->hoodModel = $hoodModel;
     $this->tagModel = $tagModel;
+    $this->routeModel = $routeModel;
   }
 
   public function index()
   {
     return view('neighbours.index', [
-      'neighbours' => $this->neighbourModel->byName()->get()
+      'neighbours' => $this->getFilteredNeighbours(),
+      'routes' => $this->routeModel->byName()->get(),
+      'routeId' => $this->request->input('route_id'),
     ]);
   }
 
@@ -62,6 +69,14 @@ class NeighbourController extends Controller
     return redirect()->route('neighbours.index')->with('status', '¡Vecinx actualizadx!');
   }
 
+  protected function getFilteredNeighbours()
+  {
+     return $this->neighbourModel
+     ->byName()
+     ->byRoute($this->routeModel->find($this->request->input('route_id')))
+     ->get();
+  }
+
   protected function fillModel(Neighbour $neighbour)
   {
     if($this->request->old()){
@@ -81,7 +96,7 @@ class NeighbourController extends Controller
   {
     return [
       'hoods' => $this->hoodModel->enable()->byName()->get(),
-      'tags' => $this->tagModel->byName()->get(),
+      'routes' => $this->routeModel->byName()->get(),
     ];
   }
 

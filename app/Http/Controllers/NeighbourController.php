@@ -69,6 +69,12 @@ class NeighbourController extends Controller
     return redirect()->route('neighbours.index')->with('status', '¡Vecinx actualizadx!');
   }
 
+  public function enable(Neighbour $neighbour, $value)
+  {
+    $neighbour->fill(['enable' => $value])->save();
+    return redirect()->route('neighbours.index')->with('status', '¡Vecinx actualizadx!');
+  }
+
   protected function getFilteredNeighbours()
   {
      return $this->neighbourModel

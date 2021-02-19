@@ -5,6 +5,7 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\NeighbourController;
 use App\Http\Controllers\NoteController;
+use App\Models\Neighbour;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,10 @@ Route::resource('members', MemberController::class)
 ->middleware(['auth']);
 
 Route::resource('neighbours', NeighbourController::class)
+->middleware(['auth']);
+
+Route::get('/neighbours/enable/{neighbour}/{value}', [NeighbourController::class, 'enable'])
+->name('neighbours.enable')
 ->middleware(['auth']);
 
 Route::get('notes', [NoteController::class, 'index'])

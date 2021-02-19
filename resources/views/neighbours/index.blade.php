@@ -71,9 +71,13 @@
       </td>
       <td>
         @if($neighbour->enable)
-        <button class="btn btn-sm btn-success"><x-fa>check</x-fa> Activo</button>
+        <a href="{{route('neighbours.enable', [$neighbour, 0])}}" class="btn btn-sm btn-success">
+          <x-fa>check</x-fa> Activo
+        </a>
         @else
-        <button class="btn btn-sm btn-danger"><x-fa>times</x-fa> Inactivo</button>
+        <a href="{{route('neighbours.enable', [$neighbour, 1])}}" class="btn btn-sm btn-danger">
+          <x-fa>times</x-fa> Inactivo
+        </a>
         @endif
       </td>
       <td>

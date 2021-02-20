@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="icon" type="image/ico" href="{{ asset('images/favicon.ico') }}">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')

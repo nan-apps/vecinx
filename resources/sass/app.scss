@@ -42,3 +42,8 @@
 .leaflet-pane.leaflet-shadow-pane{
 	display: none;
 }
+
+//bootstrap select
+.bootstrap-select .dropdown-menu{
+	z-index: 10000;
+}

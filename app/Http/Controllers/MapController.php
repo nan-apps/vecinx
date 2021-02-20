@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NoteRequest;
-use App\Http\Resources\NeighbourCollection;
-use App\Http\Resources\NeighbourResource;
+use App\Http\Resources\MapNeighbourResource;
 use App\Models\Neighbour;
 use App\Models\Note;
 use App\Models\Tag;
@@ -36,7 +35,7 @@ class MapController extends Controller
   protected function neighboursData()
   {
 
-    return NeighbourResource::collection(
+    return MapNeighbourResource::collection(
       $this->neighbourModel->enable()->get()
     );
   }

@@ -25,9 +25,17 @@ window.VecinxsMap = class VecinxsMap{
   setMarkers(markersData){
 
     markersData.forEach((markerData) => {
+      let icon = L.icon({
+          iconUrl: markerData.iconPath,
+          iconSize: [35, 42],
+          //iconAnchor: [22, 94],
+          popupAnchor: [0, 5],
+          //shadowUrl: 'my-icon-shadow.png',
+          //shadowSize: [68, 95],
+          //shadowAnchor: [22, 94]
+      });
 
-
-      marker = new L.marker([markerData.lat, markerData.lng], {});
+      marker = new L.marker([markerData.lat, markerData.lng], {icon: icon});
       marker.bindPopup(this.popUpContent(markerData)).openPopup();
       this.map.addLayer(marker);
     });

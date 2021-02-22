@@ -37,8 +37,8 @@
       <th scope="col">Nombre</th>
       <th scope="col">Barrio</th>
       <th scope="col">Dirección</th>
-      <th scope="col">Estado</th>
-      <th scope="col">Acciones</th>
+      <th scope="col" style="width: 100px;">Estado</th>
+      <th scope="col" style="width: 180px;">Acciones</th>
     </tr>
   </thead>
   <tbody>

@@ -31,7 +31,7 @@ class NeighbourRequest extends FormRequest
             'lng' => ['required'],
             'hood_id' => ['required'],
             'route_id' => ['required'],
-            'birthdate' => ['date_format:d/m/Y'],
+            'birthdate' => ['nullable', 'date_format:d/m/Y'],
         ];
     }
 }

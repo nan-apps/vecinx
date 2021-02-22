@@ -68,12 +68,12 @@ class Neighbour extends Model
 
   public function getBirthdateAttribute($value)
   {
-    return Carbon::parse($value)->format('d/m/Y');
+    return $value ? Carbon::parse($value)->format('d/m/Y') : NULL;
   }
 
   public function setBirthdateAttribute($value)
   {
-    return $this->attributes['birthdate'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+    return $this->attributes['birthdate'] = $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : NULL;
   }
 
 }

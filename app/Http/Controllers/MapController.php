@@ -36,7 +36,7 @@ class MapController extends Controller
   {
 
     return MapNeighbourResource::collection(
-      $this->neighbourModel->enable()->get()
+      $this->neighbourModel->get()
     );
   }
 

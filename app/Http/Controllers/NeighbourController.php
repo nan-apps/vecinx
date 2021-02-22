@@ -39,6 +39,7 @@ class NeighbourController extends Controller
       'neighbours' => $this->getFilteredNeighbours(),
       'routes' => $this->routeModel->byName()->get(),
       'routeId' => $this->request->input('route_id'),
+      'withDeleted' => $this->request->input('with_deleted'),
     ]);
   }
 
@@ -75,12 +76,29 @@ class NeighbourController extends Controller
     return redirect()->route('neighbours.index')->with('status', '¡Vecinx actualizadx!');
   }
 
+  public function destroy(Neighbour $neighbour)
+  {
+    $neighbour->delete();
+    return redirect()->route('neighbours.index')->with('status', '¡Vecinx borradx!');
+  }
+
+  public function restore($neighbourId)
+  {
+    $neighbour = $this->neighbourModel->where(['id' => $neighbourId])->onlyTrashed()->get()->first();
+    $neighbour->restore();
+    return redirect()->route('neighbours.index')->with('status', '¡Vecinx reestablecidx!');
+  }
+
   protected function getFilteredNeighbours()
   {
-     return $this->neighbourModel
+     $results =  $this->neighbourModel
      ->byName()
-     ->byRoute($this->routeModel->find($this->request->input('route_id')))
-     ->get();
+     ->byRoute($this->routeModel->find($this->request->input('route_id')));
+
+     if($this->request->input('with_deleted'))
+      $results = $results->onlyTrashed();
+
+     return $results->get();
   }
 
   protected function fillModel(Neighbour $neighbour)

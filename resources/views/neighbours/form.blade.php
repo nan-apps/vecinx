@@ -16,6 +16,10 @@
   </a>
 @endif
 
+@if($neighbour->exists)
+  <x-form.delete-button :route="route('neighbours.destroy', [$neighbour])" />
+@endif
+
 @endsection
 
 
@@ -76,8 +80,6 @@
   </div>
 
   <div class="col-md-4" >
-    <h4>Opciones</h4>
-    <x-form.check-box label="¿Activo?" name="enable" :checked="$neighbour->enable" />
 
     <x-form.buttons-switch 
     label="Recorrido" 

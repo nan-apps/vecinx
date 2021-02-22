@@ -39,6 +39,10 @@ Route::get('/neighbours/enable/{neighbour}/{value}', [NeighbourController::class
 ->name('neighbours.enable')
 ->middleware(['auth']);
 
+Route::get('/neighbours/restore/{neighbour_id}', [NeighbourController::class, 'restore'])
+->name('neighbours.restore')
+->middleware(['auth']);
+
 Route::get('notes', [NoteController::class, 'index'])
 ->name('notes.index')
 ->middleware(['auth']);

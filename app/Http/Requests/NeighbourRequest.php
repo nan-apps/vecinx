@@ -24,7 +24,6 @@ class NeighbourRequest extends FormRequest
     public function rules()
     {
         return [
-            'enable' => ['boolean'],
             'name' => ['required'],
             'address' => ['required'],
             'lat' => ['required'],

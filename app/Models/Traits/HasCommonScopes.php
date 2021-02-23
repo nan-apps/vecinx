@@ -7,17 +7,17 @@ trait HasCommonScopes
 
   public function scopeEnable($query)
   {
-    return $query->where('enable', 1);
+    return $query->where("{$this->getTable()}.enable", 1);
   }
 
   public function scopeByName($query)
   {
-    return $query->orderBy('name');
+    return $query->orderBy("{$this->getTable()}.name");
   }
 
   public function scopeByNewest($query)
   {
-    return $query->orderByDesc('created_at');
+    return $query->orderByDesc("{$this->getTable()}.created_at");
   }
 
 }

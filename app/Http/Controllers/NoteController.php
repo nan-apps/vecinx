@@ -54,20 +54,23 @@ class NoteController extends Controller
     return $this->redirectToIndex($neighbour, 'Nota creada!');
   }
   
-  public function edit(Neighbour $neighbour, Note $note)
+  public function edit(Neighbour $neighbour, $noteId)
   {
+    $note = $this->noteModel->find($noteId);
     return view('notes.edit', $this->getFormAttributes($neighbour, $note));
   }
 
 
-  public function update(NoteRequest $request, Neighbour $neighbour, Note $note)
+  public function update(NoteRequest $request, Neighbour $neighbour, $noteId)
   {
+    $note = $this->noteModel->find($noteId);
     $note->update($request->all());
     return $this->redirectToIndex($neighbour, 'Nota actualizada!');
   }
 
-  public function destroy(Neighbour $neighbour, Note $note)
+  public function destroy(Neighbour $neighbour, $noteId)
   {
+    $note = $this->noteModel->find($noteId);
     $note->delete();
     return $this->redirectToIndex($neighbour, 'Nota borrada!');
   }

@@ -25,11 +25,6 @@ class NeighbourRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'address' => ['required'],
-            'lat' => ['required'],
-            'lng' => ['required'],
-            'hood_id' => ['required'],
-            'route_id' => ['required'],
             'birthdate' => ['nullable', 'date_format:d/m/Y'],
         ];
     }

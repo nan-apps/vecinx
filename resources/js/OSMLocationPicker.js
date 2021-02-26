@@ -4,8 +4,19 @@ window.OSMPICKER = (function(){
 	var map;
 	var marker;
 	var circle;
+	
+	app.destroymappicker = function(){
+		// map.off();
+		// map.remove();
+		// document.getElementById('locationPicker').innerHTML = "<div id='map' style='width: 100%; height: 100%;'></div>";
+	}
+
 	app.initmappicker = function(option){
 		try{
+			var container = L.DomUtil.get('locationPicker');
+			if(container != null){
+				container._leaflet_id = null;
+			}
 			map = new L.Map('locationPicker');
 		}catch(e){
 			console.log(e);

@@ -59,36 +59,23 @@
     </div>
     
     <div class="border-top mt-3 pt-3" >
-      
-      <x-form.input-text label="Dirección" name="address" :value="$neighbour->address" />
 
-      <x-form.select label="Barrio" name="hood_id" :collection="$hoods" :selected="$neighbour->hood_id" />
+      <x-form.select label="Parada" 
+      name="address_id" 
+      :collection="$addresses" 
+      :selected="$neighbour->address_id" 
+      :getNameFunc="function($a){return $a->address;}" />
 
-      <div class="row" >
-        <div class="col-md-6" >
-          <x-form.input-text label="Latitud" name="lat" :value="$neighbour->lat" />
-        </div>
-        <div class="col-md-6" >
-          <x-form.input-text label="Longitud" name="lng" :value="$neighbour->lng" />
-        </div>
-      </div>
-      <x-form.input-text label="Notas sobre la dirección" name="address_notes" :value="$neighbour->address_notes" />
+      <a href="{{route('addresses.create')}}" class="btn btn-success open-remote-modal">
+        <x-fa>plus</x-fa> Nueva parada
+      </a>
+
     </div>
-
-    <div id="locationPicker" style="width: 100%; height: 300px;"></div>
 
   </div>
 
   <div class="col-md-4" >
 
-    <x-form.buttons-switch 
-    label="Recorrido" 
-    name="route_id" 
-    :collection="$routes" 
-    :selected="$neighbour->route_id" 
-    size="" />
-
-    <hr />
 
     @if($neighbour->exists)
       {{-- <h4>Agregar Nota</h4>

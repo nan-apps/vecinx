@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\MemberController;
@@ -33,6 +34,9 @@ Route::resource('members', MemberController::class)
 ->middleware(['auth']);
 
 Route::resource('neighbours', NeighbourController::class)
+->middleware(['auth']);
+
+Route::resource('addresses', AddressController::class)
 ->middleware(['auth']);
 
 Route::get('/neighbours/enable/{neighbour}/{value}', [NeighbourController::class, 'enable'])

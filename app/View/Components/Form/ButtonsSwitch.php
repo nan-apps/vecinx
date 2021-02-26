@@ -15,7 +15,7 @@ class ButtonsSwitch extends Component
     public $allButton;
     public $inputClasses;
 
-    function __construct($label, $name, $collection, $selected, $size=null, $allButton=null, $inputClasses=null)
+    function __construct($label, $name, $collection, $selected=null, $size=null, $allButton=null, $inputClasses=null)
     {
         $this->label = $label;
         $this->name = $name;

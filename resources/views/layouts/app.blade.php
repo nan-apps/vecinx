@@ -105,5 +105,10 @@
         @yield('content')
     </main>
 </div>
+
+<div class="modal" tabindex="-1" id="remote-modal">
+  
+</div>
+
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NeighbourRequest;
+use App\Models\Address;
 use App\Models\Hood;
 use App\Models\Neighbour;
 use App\Models\Route;
@@ -16,14 +17,16 @@ class NeighbourController extends Controller
   protected $neighbourModel;
   protected $hoodModel;
   protected $tagModel;
-  private $routeModel;
+  protected $routeModel;
+  protected $addressModel;
 
   function __construct(
     Request $request,
     Neighbour $neighbourModel,
     Hood $hoodModel,
     Tag $tagModel,
-    Route $routeModel
+    Route $routeModel,
+    Address $addressModel
   )
   {
     $this->request = $request;
@@ -31,6 +34,7 @@ class NeighbourController extends Controller
     $this->hoodModel = $hoodModel;
     $this->tagModel = $tagModel;
     $this->routeModel = $routeModel;
+    $this->addressModel = $addressModel;
   }
 
   public function index()
@@ -120,7 +124,7 @@ class NeighbourController extends Controller
   {
     return [
       'hoods' => $this->hoodModel->enable()->byName()->get(),
-      'routes' => $this->routeModel->byName()->get(),
+      'addresses' => $this->addressModel->get()
     ];
   }
 

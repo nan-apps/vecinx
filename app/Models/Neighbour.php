@@ -18,10 +18,9 @@ class Neighbour extends Model
   ];
 
   protected $fillable = [
-    'name', 'last_name', 'id_number', 'address',
+    'name', 'last_name', 'id_number',
     'phone', 'birthdate', 'enable',
-    'lat', 'lng', 'hood_id', 'address_notes',
-    'route_id'
+    'address_notes'
   ];
 
   public function hood()
@@ -29,14 +28,14 @@ class Neighbour extends Model
     return $this->belongsTo(Hood::class);
   }
 
+  public function address()
+  {
+    return $this->belongsTo(Address::class);
+  }
+
   public function route()
   {
     return $this->belongsTo(Route::class);
-  }
-
-  public function addresses()
-  {
-    return $this->hasMany(Address::class);
   }
 
   public function notes()

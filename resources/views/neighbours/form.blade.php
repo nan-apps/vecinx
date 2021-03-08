@@ -1,7 +1,7 @@
 @extends('layouts.form')
 
 @push('scripts')
-  <script src="{{ asset('js/neighbour_form.js') }}"></script>
+<script src="{{ asset('js/neighbour_form.js') }}"></script>
 @endpush
 
 @section('action'){{$action}}@endsection
@@ -11,13 +11,13 @@
 @section('header_buttons')
 
 @if($neighbour->exists)
-  <a href="{{route('notes.index', ['neighbour_id' => $neighbour->id])}}" class="btn btn-primary">
-    <x-fa>list</x-fa> Administrar sus notas
-  </a>
+<a href="{{route('notes.index', ['neighbour_id' => $neighbour->id])}}" class="btn btn-primary">
+  <x-fa>list</x-fa> Administrar sus notas
+</a>
 @endif
 
 @if($neighbour->exists)
-  <x-form.delete-button :route="route('neighbours.destroy', [$neighbour])" />
+<x-form.delete-button :route="route('neighbours.destroy', [$neighbour])" />
 @endif
 
 @endsection
@@ -66,8 +66,15 @@
       :selected="$neighbour->address_id" 
       :getNameFunc="function($a){return $a->address;}" />
 
-      <a href="{{route('addresses.create')}}" class="btn btn-success open-remote-modal">
+      <a href="{{route('addresses.create')}}" class="btn btn-outline-success new-address">
         <x-fa>plus</x-fa> Nueva parada
+      </a>
+
+      
+      <a href="{{$neighbour->address ? route('addresses.edit', $neighbour->address) : '#'}}" 
+        class="btn btn-outline-secondary edit-address @unless($neighbour->address) d-none @endunless" 
+      >
+        <x-fa>edit</x-fa> Editar parada
       </a>
 
     </div>
@@ -106,33 +113,33 @@
       </h4>
 
       @forelse($notes as $note)
-        <p>
-          <badge class="badge badge-{{$note->tag->color}}" >
-            {{$note->tag->name}}
-          </badge>
-          <span class="text-muted" >{{$note->created_at->format("d/m/Y H:i")}}</span>
-          <br />
-          {{Illuminate\Support\Str::of($note->body)->substr(0, 100)}}...
-        </p>
+      <p>
+        <badge class="badge badge-{{$note->tag->color}}" >
+          {{$note->tag->name}}
+        </badge>
+        <span class="text-muted" >{{$note->created_at->format("d/m/Y H:i")}}</span>
+        <br />
+        {{Illuminate\Support\Str::of($note->body)->substr(0, 100)}}...
+      </p>
       @empty
       <x-fa>info-circle</x-fa>
       <i>Aun no hay notas cargadas</i>
       @endforelse
 
-    @endif
+      @endif
 
-    
+
+    </div>
   </div>
-</div>
 
-@endsection
+  @endsection
 
-@section('footer')
-<button type="submit" class="btn btn-primary">
-  Guardar
-</button>
+  @section('footer')
+  <button type="submit" class="btn btn-primary">
+    Guardar
+  </button>
 
-<a href="{{url()->previous()}}" class="btn btn-link">
-  Cancelar
-</a>
-@endsection
+  <a href="{{url()->previous()}}" class="btn btn-link">
+    Cancelar
+  </a>
+  @endsection

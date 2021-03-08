@@ -32,10 +32,10 @@ class AddressRequest extends FormRequest
             'route_id' => ['required']
         ];
 
-        if($this->id){
+        if($this->route('address')){
             $rules['address'] = [
                 'required',
-                Rule::unique('address')->ignore($this->id)
+                Rule::unique('addresses')->ignore($this->route('address')->id)
             ];
         } else {
             $rules['address'] = 'unique:App\Models\Address,address';

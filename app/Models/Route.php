@@ -10,8 +10,8 @@ class Route extends Model
 {
   use HasFactory, HasCommonScopes;
 
-  public function neighbours()
+  public function Addresses()
   {
-    return $this->hasMany(Neighbour::class);
+    return $this->hasMany(Address::class);
   }
 }

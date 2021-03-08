@@ -1,11 +1,11 @@
 require('leaflet')
 require('./bootstrap');
 require('bootstrap-select');
-//require('./OSMLocationPicker');
 require('./LocationPicker');
 require('./VecinxsMap');
 require('./RemoteModal');
 require('./RemoteForm');
+require('./NeighbourForm');
 
 
 

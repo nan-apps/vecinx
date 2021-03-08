@@ -16,14 +16,14 @@ window.RemoteForm = class RemoteForm {
         if(response.data.success){
 
           if(this.successCallback)
-            this.successCallback();
+            this.successCallback(response.data);
 
         } else {
           alert("Error enviando datos");
         }
 
       }).catch((err)=>{
-        if(err.response.status == 422){
+        if(err.response && err.response.status == 422){
           this.manageValidationErrors(err.response.data.errors);
         } else {
           alert("Error enviando datos");

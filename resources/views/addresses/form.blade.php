@@ -1,10 +1,12 @@
 <div class="modal-dialog modal-xl">
   <div class="modal-content">
 
-    <form method="POST" action="{{route('addresses.store')}}" class="" >
+    <form method="POST" action="{{$action}}" class="" >
+
+      @method($method ?? 'POST')
 
       <div class="modal-header">
-        <h5 class="modal-title">Parada</h5>
+        <h5 class="modal-title">{{$title}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -23,22 +25,22 @@
             label="Recorrido" 
             name="route_id" 
             :collection="$routes" 
-            :selected="null"
+            :selected="$address->route_id"
             size="" />
 
-            <x-form.input-text label="Dirección" name="address" value="" />
+            <x-form.input-text label="Dirección" name="address" :value="$address->address" />
 
-            <x-form.select label="Barrio" name="hood_id" :collection="$hoods" selected="" />
+            <x-form.select label="Barrio" name="hood_id" :collection="$hoods" :selected="$address->hood_id" />
 
             <div class="row" >
               <div class="col-md-6" >
-                <x-form.input-text label="Latitud" name="lat" value="" />
+                <x-form.input-text label="Latitud" name="lat" :value="$address->lat" />
               </div>
               <div class="col-md-6" >
-                <x-form.input-text label="Longitud" name="lng" value="" />
+                <x-form.input-text label="Longitud" name="lng" :value="$address->lng" />
               </div>
             </div>
-            <x-form.input-text label="Notas sobre la parada" name="address_notes" value="" />
+            <x-form.input-text label="Notas sobre la parada" name="address_notes" :value="$address->address_note" />
           </div>
 
           <div class="col-md-6" >

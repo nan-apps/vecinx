@@ -25,7 +25,8 @@ window.RemoteModal = class RemoteModal{
       $("#remote-modal").modal('show');
 
     } else {
-      alert("Error obteniendo datos para el mapa");
+      alert("Error obteniendo datos");
+      console.log(response);
     }
       
 

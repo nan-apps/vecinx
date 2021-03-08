@@ -9,7 +9,7 @@
     </label>
     @endif
     @foreach($collection as $object)
-    <label class="btn btn-{{$size ?? 'md'}} btn-outline-{{$object->color}}">
+    <label class="btn btn-{{$size ?? 'md'}} btn-outline-{{$object->color}} {{$object->id == $selected ? 'active' : ''}}">
       <input type="radio" class="{{$inputClasses ?? ''}}" name="{{$name}}" value="{{$object->id}}" {{$object->id == $selected ? 'checked' : ''}} > {{$object->name}}
     </label>
     @endforeach

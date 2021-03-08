@@ -20,4 +20,14 @@ class Address extends Model
     return $this->hasMany(Neighbour::class);
   }
 
+  public function route()
+  {
+    return $this->belongsTo(Route::class);
+  }
+
+  public function hood()
+  {
+    return $this->belongsTo(Hood::class);
+  }
+
 }

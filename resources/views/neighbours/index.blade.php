@@ -71,8 +71,8 @@
    @foreach ($neighbours as $neighbour)
     <tr>
       <td>
-        <span class="badge badge-{{$neighbour->route->color}}" >
-          {{$neighbour->route->name}}
+        <span class="badge badge-{{$neighbour->address->route->color}}" >
+          {{$neighbour->address->route->name}}
         </span>
       </td>
       <td>
@@ -85,9 +85,9 @@
             </span>
         @endif
       </td>
-      <td>{{$neighbour->hood ? $neighbour->hood->name : ''}}</td>
+      <td>{{$neighbour->address->hood->name}}</td>
       <td>
-        {{$neighbour->address}}<br/>
+        {{$neighbour->address->address}}<br/>
         <span class="text-muted small" >{{$neighbour->address_notes}}</span>
       </td>
       <td>

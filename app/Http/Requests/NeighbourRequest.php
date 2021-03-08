@@ -25,6 +25,7 @@ class NeighbourRequest extends FormRequest
     {
         return [
             'name' => ['required'],
+            'address_id' => ['required'],
             'birthdate' => ['nullable', 'date_format:d/m/Y'],
         ];
     }

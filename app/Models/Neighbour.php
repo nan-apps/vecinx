@@ -20,22 +20,12 @@ class Neighbour extends Model
   protected $fillable = [
     'name', 'last_name', 'id_number',
     'phone', 'birthdate', 'enable',
-    'address_notes'
+    'address_notes', 'address_id'
   ];
-
-  public function hood()
-  {
-    return $this->belongsTo(Hood::class);
-  }
 
   public function address()
   {
     return $this->belongsTo(Address::class);
-  }
-
-  public function route()
-  {
-    return $this->belongsTo(Route::class);
   }
 
   public function notes()
@@ -51,7 +41,10 @@ class Neighbour extends Model
   public function scopeByRoute($query, Route $route=null)
   {
     if($route)
-      return $query->where('route_id', $route->id);
+      return $query
+      ->join('addresses', 'neighbours.address_id', '=', 'addresses.id')
+      ->select('neighbours.*')
+      ->where('addresses.route_id', $route->id);
     else
       return $query;
   }
@@ -62,7 +55,7 @@ class Neighbour extends Model
 
   public function fullAddress()
   {
-    return $this->address. ($this->hood ? ", {$this->hood->name}" : '');  
+    return "{$this->address->address}, {$this->address->hood->name}";  
   }
 
   public function getBirthdateAttribute($value)

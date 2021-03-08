@@ -19,6 +19,8 @@ class CreateStops extends Migration
         });
 
         Schema::table('neighbours', function (Blueprint $table) {
+            $table->dropForeign(['hood_id']);
+            $table->dropColumn(['hood_id']);
             $table->dropColumn(['lat', 'lng', 'address', 'hood_id']);
         });
 

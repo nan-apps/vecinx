@@ -38,7 +38,7 @@ class AddressController extends Controller
 
   public function store(AddressRequest $request)
   {
-    $address = $address->create($request->all());
+    $address = $this->addressModel->create($request->all());
     return response()->json([
       'success' => true,
       'address' => $address->address,

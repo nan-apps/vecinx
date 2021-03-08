@@ -14,10 +14,10 @@ class AddRouteToStops extends Migration
     public function up()
     {
         Schema::table('neighbours', function (Blueprint $table) {
-            $table->dropForeign(['route_id']);
             $table->dropColumn(['route_id']);
-            $table->dropForeign(['hood_id']);
+            $table->dropForeign(['route_id']);
             $table->dropColumn(['hood_id']);
+            $table->dropForeign(['hood_id']);
             $table->dropColumn(['address', 'lat', 'lng']);
         });
 

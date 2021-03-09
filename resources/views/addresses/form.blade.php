@@ -40,7 +40,7 @@
                 <x-form.input-text label="Longitud" name="lng" :value="$address->lng" />
               </div>
             </div>
-            <x-form.input-text label="Notas sobre la parada" name="address_notes" :value="$address->address_note" />
+            <x-form.input-text label="Notas sobre la parada" name="address_notes" :value="$address->address_notes" />
           </div>
 
           <div class="col-md-6" >

@@ -58,7 +58,7 @@
       </div>
     </div>
     
-    <div class="border-top mt-3 pt-3" >
+    <div class="form-group border-top mt-3 pt-3" >
 
       <x-form.select label="Parada" 
       name="address_id" 
@@ -77,6 +77,12 @@
         <x-fa>edit</x-fa> Editar parada
       </a>
 
+    </div>
+
+    <div class="row" >
+      <div class="col-md-12" >
+        <x-form.input-text label="Notas sobre la dirección" name="address_notes" :value="$neighbour->address_notes" />
+      </div>
     </div>
 
   </div>

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MapNeighbourResource extends JsonResource
+class MapAddressResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,11 @@ class MapNeighbourResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->fullName(),
             'address' => $this->fullAddress(),
-            'phone' => $this->phone,
             'lat' => $this->lat,
             'lng' => $this->lng,
             'iconPath' => "/images/map-markers/{$this->route->key}.png",
+            'neighbours' => NeighbourResource::collection($this->neighbours),
             'editPath' => '',
         ];
     }

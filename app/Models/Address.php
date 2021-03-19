@@ -30,4 +30,9 @@ class Address extends Model
     return $this->belongsTo(Hood::class);
   }
 
+  public function fullAddress()
+  {
+    return "{$this->address}, {$this->hood->name}";
+  }
+
 }

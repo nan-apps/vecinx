@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NoteRequest;
-use App\Http\Resources\MapNeighbourResource;
-use App\Models\Neighbour;
+use App\Http\Resources\MapAddressResource;
+use App\Models\Address;
 use App\Models\Note;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -13,18 +13,18 @@ use Illuminate\Support\Facades\Session;
 class MapController extends Controller
 {
   private $request;
-  private $neighbourModel;
+  private $addressModel;
 
-  public function __construct(Request $request, Neighbour $neighbourModel)
+  public function __construct(Request $request, Address $addressModel)
   {
     $this->request = $request;
-    $this->neighbourModel = $neighbourModel;
+    $this->addressModel = $addressModel;
   }
 
   public function index()
   {
     if($this->request->ajax()){
-      return $this->neighboursData();
+      return $this->addressData();
     } else {
     return view('map.index', [
       
@@ -32,11 +32,11 @@ class MapController extends Controller
     }
   }
 
-  protected function neighboursData()
+  protected function addressData()
   {
 
-    return MapNeighbourResource::collection(
-      $this->neighbourModel->get()
+    return MapAddressResource::collection(
+      $this->addressModel->get()
     );
   }
 

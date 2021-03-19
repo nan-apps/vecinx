@@ -55,7 +55,7 @@ class Neighbour extends Model
 
   public function fullAddress()
   {
-    return "{$this->address->address}, {$this->address->hood->name}";  
+    return $this->address->fullAddress(); 
   }
 
   public function getBirthdateAttribute($value)

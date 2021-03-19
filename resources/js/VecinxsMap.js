@@ -43,9 +43,14 @@ window.VecinxsMap = class VecinxsMap{
 
   popUpContent(markerData){
     let html = $("#" + this.options["neighbourDataTemplate"]).find(".content").html();
-    ["name", "phone", "address"].forEach(key => {
-      html = html.replace("%"+key+"%", (markerData[key] || "--"));
-    });
+    html = html.replace("%address%", markerData['address']);
+    if(markerData['neighbours'].length == 0){
+      html = html.replace("%neighbours%", "No hay vecinxs en esta parada");
+    } else {
+      html = html.replace("%neighbours%", markerData['neighbours'].map((neighbour)=>{
+        return "<i class='fa fa-user' ></i> " + neighbour['name'];
+      }).join("<br />"));
+    }
     return html;
   }
 

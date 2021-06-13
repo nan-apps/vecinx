@@ -41,6 +41,11 @@ class TagSeeder extends Seeder
           'key' => 'general',
           'color' => 'primary'
         ],
+        [
+          'name' => 'Pedidos',
+          'key' => 'requirements',
+          'color' => 'warning'
+        ],
 
       ]);
     }

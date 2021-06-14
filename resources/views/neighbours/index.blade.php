@@ -88,7 +88,7 @@
       <td>{{$neighbour->address->hood->name}}</td>
       <td>
         @if($neighbour->address->name)
-          {{$neighbour->address->name}}<br/>
+          <b>{{$neighbour->address->name}}<br/></b>
         @endif
         <x-fa>map-marker</x-fa>
         {{$neighbour->address->address}}<br/>

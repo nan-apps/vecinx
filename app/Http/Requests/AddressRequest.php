@@ -30,7 +30,7 @@ class AddressRequest extends FormRequest
             'lng' => ['required', 'string', 'max:255'],
             'hood_id' => ['required', 'string', 'max:255'],
             'route_id' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['nullable','string', 'max:255'],
         ];
 
         if($this->route('address')){

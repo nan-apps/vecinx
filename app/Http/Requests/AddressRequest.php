@@ -26,15 +26,16 @@ class AddressRequest extends FormRequest
     {
 
         $rules = [
-            'lat' => ['required'],
-            'lng' => ['required'],
-            'hood_id' => ['required'],
-            'route_id' => ['required']
+            'lat' => ['required', 'string', 'max:255'],
+            'lng' => ['required', 'string', 'max:255'],
+            'hood_id' => ['required', 'string', 'max:255'],
+            'route_id' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
         ];
 
         if($this->route('address')){
             $rules['address'] = [
-                'required',
+                'required', 'string', 'max:255',
                 Rule::unique('addresses')->ignore($this->route('address')->id)
             ];
         } else {

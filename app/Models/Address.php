@@ -12,7 +12,7 @@ class Address extends Model
   use HasFactory, SoftDeletes;
 
   protected $fillable = [
-    'address', 'lat', 'lng', 'hood_id', 'address_notes','route_id'
+    'address', 'lat', 'lng', 'hood_id', 'address_notes','route_id', 'name'
   ];
 
   public function neighbours()
@@ -33,6 +33,16 @@ class Address extends Model
   public function fullAddress()
   {
     return "{$this->address}, {$this->hood->name}";
+  }
+
+  public function getFullNameAttribute()
+  {
+    if($this->name){
+      return "{$this->name} ({$this->address})";
+    } else {
+      return "{$this->address}";
+    }
+
   }
 
 }

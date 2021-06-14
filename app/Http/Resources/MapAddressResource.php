@@ -17,6 +17,7 @@ class MapAddressResource extends JsonResource
         return [
             'id' => $this->id,
             'address' => $this->fullAddress(),
+            'name' => $this->name,
             'lat' => $this->lat,
             'lng' => $this->lng,
             'iconPath' => "/images/map-markers/{$this->route->key}.png",

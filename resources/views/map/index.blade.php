@@ -19,6 +19,7 @@ Mapa general
 
 <div id="map-vecinx-template" class="d-none" >
   <div class="content" >
+    <b>%name%</b><br />
     <x-fa>map-marker</x-fa> %address% <br/>
     <hr />
     %neighbours%

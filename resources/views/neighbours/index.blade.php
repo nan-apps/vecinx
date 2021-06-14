@@ -58,7 +58,7 @@
       <th scope="col">Recorrido</th>
       <th scope="col">Nombre</th>
       <th scope="col">Barrio</th>
-      <th scope="col">Dirección</th>
+      <th scope="col">Parada</th>
       <th scope="col" style="width: 180px;">Acciones</th>
     </tr>
   </thead>
@@ -87,6 +87,10 @@
       </td>
       <td>{{$neighbour->address->hood->name}}</td>
       <td>
+        @if($neighbour->address->name)
+          {{$neighbour->address->name}}<br/>
+        @endif
+        <x-fa>map-marker</x-fa>
         {{$neighbour->address->address}}<br/>
         <span class="text-muted small" >{{$neighbour->address_notes}}</span>
       </td>

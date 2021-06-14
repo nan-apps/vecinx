@@ -36,7 +36,7 @@ class MapController extends Controller
   {
 
     return MapAddressResource::collection(
-      $this->addressModel->get()
+      $this->addressModel->has('neighbours')->get()
     );
   }
 

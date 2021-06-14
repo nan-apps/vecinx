@@ -64,7 +64,7 @@
       name="address_id" 
       :collection="$addresses" 
       :selected="$neighbour->address_id" 
-      :getNameFunc="function($a){return $a->address;}" />
+      :getNameFunc="function($a){return $a->full_name;}" />
 
       <a href="{{route('addresses.create')}}" class="btn btn-outline-success new-address">
         <x-fa>plus</x-fa> Nueva parada

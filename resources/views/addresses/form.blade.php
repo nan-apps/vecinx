@@ -28,6 +28,8 @@
             :selected="$address->route_id"
             size="" />
 
+            <x-form.input-text label="Nombre" name="name" :value="$address->name" />
+
             <x-form.input-text label="Dirección" name="address" :value="$address->address" />
 
             <x-form.select label="Barrio" name="hood_id" :collection="$hoods" :selected="$address->hood_id" />

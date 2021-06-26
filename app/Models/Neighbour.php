@@ -40,13 +40,19 @@ class Neighbour extends Model
 
   public function scopeByRoute($query, Route $route=null)
   {
+    $query = $query
+        ->join('addresses', 'neighbours.address_id', '=', 'addresses.id')
+        ->select('neighbours.*')
+        ->orderBy('addresses.route_id')
+        ->orderBy('addresses.name')
+        ->orderBy('addresses.address')
+        ->orderBy('neighbours.name');
+    
     if($route)
-      return $query
-      ->join('addresses', 'neighbours.address_id', '=', 'addresses.id')
-      ->select('neighbours.*')
-      ->where('addresses.route_id', $route->id);
-    else
-      return $query;
+      $query = $query->where('addresses.route_id', $route->id);
+    
+    return $query;
+      
   }
 
   public function fullName(){

@@ -96,7 +96,6 @@ class NeighbourController extends Controller
   protected function getFilteredNeighbours()
   {
      $results =  $this->neighbourModel
-     ->byName()
      ->byRoute($this->routeModel->find($this->request->input('route_id')));
 
      if($this->request->input('with_deleted'))

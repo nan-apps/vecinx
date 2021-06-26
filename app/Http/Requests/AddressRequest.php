@@ -30,16 +30,16 @@ class AddressRequest extends FormRequest
             'lng' => ['required', 'string', 'max:255'],
             'hood_id' => ['required', 'string', 'max:255'],
             'route_id' => ['required', 'string', 'max:255'],
-            'name' => ['nullable','string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
         ];
 
         if($this->route('address')){
-            $rules['address'] = [
+            $rules['name'] = [
                 'required', 'string', 'max:255',
                 Rule::unique('addresses')->ignore($this->route('address')->id)
             ];
         } else {
-            $rules['address'] = 'unique:App\Models\Address,address';
+            $rules['name'] = ['nullable','string', 'max:255', 'unique:App\Models\Address,name'];
         }
 
         return $rules;

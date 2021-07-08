@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "nan-apps/vecinx",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "App to track homless people and give assistence. Made for Ser Con Vos, organization from Buenos Aires, Argentina",
     "keywords": [
         "framework",
         "laravel"
@@ -15,7 +15,8 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
-        "symfony/process": "^5.2"
+        "symfony/process": "^5.2",
+        "spatie/eloquent-sortable": "^3.11"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

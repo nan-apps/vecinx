@@ -7,4 +7,7 @@
 		value="{{$value ?? ''}}"
 		placeholder="{{$placeholder ?? ''}}" 
 		>
+	@if($helpText)
+		<small class="form-text text-muted">{{$helpText}}</small>
+	@endif
 </div>

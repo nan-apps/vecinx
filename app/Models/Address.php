@@ -3,16 +3,20 @@
 namespace App\Models;
 
 use App\Models\Neighbour;
+use App\Models\Traits\HasCommonScopes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
-class Address extends Model
+class Address extends Model implements Sortable
 {
-  use HasFactory, SoftDeletes;
+  use HasFactory, SoftDeletes, HasCommonScopes, SortableTrait;
 
   protected $fillable = [
-    'address', 'lat', 'lng', 'hood_id', 'address_notes','route_id', 'name'
+    'address', 'lat', 'lng', 'hood_id', 'address_notes','route_id', 'name', 
+    'order_column'
   ];
 
   public function neighbours()
@@ -43,6 +47,11 @@ class Address extends Model
       return "{$this->address}";
     }
 
+  }
+
+   public function buildSortQuery()
+  {
+      return static::query()->where('route_id', $this->route_id);
   }
 
 }

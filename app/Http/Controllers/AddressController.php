@@ -9,6 +9,8 @@ use App\Models\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class AddressController extends Controller
 {
@@ -25,6 +27,19 @@ class AddressController extends Controller
     $this->routeModel = $routeModel;
   }
 
+  public function index()
+  {
+    return view('addresses.index', [
+      'addresses' => $this->getFilteredAddresses(),
+      'routes' => $this->routeModel->byName()->get(),
+      'routeId' => $this->request->input('route_id'),
+    ]);
+  }
+
+  public function success(){
+    return redirect()->route('addresses.index')->with('status', 'Parada guardada con éxito!');
+  }
+
   public function create()
   {
     $attrs = array_merge($this->getFormCollections(), [
@@ -38,12 +53,27 @@ class AddressController extends Controller
 
   public function store(AddressRequest $request)
   {
-    $address = $this->addressModel->create($request->all());
-    return response()->json([
-      'success' => true,
-      'address' => $address->address,
-      'id' => $address->id,
-    ]);
+    DB::beginTransaction();
+
+    try {
+      
+      $this->resetOrder();
+      $address = $this->addressModel->create($request->all());
+      if($request->order_column) #eloquent-sortable por defecto en la creación pone el orden mayor
+        $address->fill(['order_column' => $request->order_column])->save();
+      DB::commit();
+      
+      return response()->json([
+        'success' => true,
+        'address' => $address->full_name,
+        'id' => $address->id,
+      ]);
+    
+    } catch (\Exception $e) {
+      DB::rollback();
+      return response()->json(['success' => false]);
+    }
+
   }
 
   public function edit(Address $address)
@@ -62,8 +92,40 @@ class AddressController extends Controller
     $address->fill($request->all())->save();
     return response()->json([
       'success' => true,
-      'address' => $address->address
+      'address' => $address->full_name
     ]);
+  }
+
+  public function moveUp(Address $address)
+  {
+    $address->moveOrderUp();
+    return redirect()->route('addresses.index')->with('status', '¡Orden modificado!');
+  }
+
+  public function moveDown(Address $address)
+  {
+    $address->moveOrderDown();
+    return redirect()->route('addresses.index')->with('status', '¡Orden modificado!');
+  }
+
+  protected function resetOrder(){
+    $addresses = $this->getFilteredAddresses();
+    $position = 1;
+    foreach($addresses as $address){
+      if($this->request->order_column == $position){
+        $position += 1;
+      }
+      $address->order_column = $position;
+      $position += 1;
+      $address->save();
+    }
+  }
+
+  protected function resetAddressesOrder(Collection $addresses){
+    foreach($addresses as $i => $address){
+      $address->order_column = $i + 1;
+      $address->save();
+    }
   }
 
   protected function getFormCollections()
@@ -72,6 +134,15 @@ class AddressController extends Controller
       'hoods' => $this->hoodModel->enable()->byName()->get(),
       'routes' => $this->routeModel->byName()->get(),
     ];
+  }
+
+  private function getFilteredAddresses(){
+    return $this
+      ->addressModel
+      ->orderBy('route_id')
+      ->ordered()
+      ->whereBelongsTo('route_id', $this->request->route_id)
+      ->get();
   }
 
 }

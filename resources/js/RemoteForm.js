@@ -5,6 +5,7 @@ window.RemoteForm = class RemoteForm {
   constructor(form){
     this.form = form;
     this.successCallback = null;
+    this.validationCallback = null;
   }
 
   init(){
@@ -25,6 +26,8 @@ window.RemoteForm = class RemoteForm {
       }).catch((err)=>{
         if(err.response && err.response.status == 422){
           this.manageValidationErrors(err.response.data.errors);
+          if(this.validationCallback)
+            this.validationCallback();
         } else {
           alert("Error enviando datos");
           console.log(err);

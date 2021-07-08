@@ -27,9 +27,11 @@ class ChangeStopsConstraints extends Migration
      */
     public function down()
     {
-        $table->unique('address');
-        $table->unique(['lat', 'lng']);
-        $table->dropUnique('addresses_name_unique');
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->unique('address');
+            $table->unique(['lat', 'lng']);
+            $table->dropUnique('addresses_name_unique');
+        });
 
     }
 }

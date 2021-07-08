@@ -20,4 +20,11 @@ trait HasCommonScopes
     return $query->orderByDesc("{$this->getTable()}.created_at");
   }
 
+  public function scopeWhereBelongsTo($query, $field, $id=null, $table=null)
+  {
+    if(!$id) return $query;
+    $table = $table ?: $this->getTable();
+    return $query->where("{$table}.{$field}", $id);
+  }
+
 }

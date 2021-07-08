@@ -21,12 +21,30 @@
 
           <div class="col-md-6" >
 
-            <x-form.buttons-switch 
-            label="Recorrido" 
-            name="route_id" 
-            :collection="$routes" 
-            :selected="$address->route_id"
-            size="" />
+            <div class="row" >
+              <div class="col-md-6" >
+                <x-form.buttons-switch 
+                label="Recorrido" 
+                name="route_id" 
+                :collection="$routes" 
+                :selected="$address->route_id"
+                size="" />
+              </div>
+
+              @unless($address->exists)
+                <div class="col-md-6" >
+                  <x-form.input-text 
+                  mode="number"
+                  label="Orden" 
+                  name="order_column" 
+                  :value="$address->order_column" 
+                  helpText="Dejar en blanco para ubicar al final"
+                  />
+                </div>
+              @endif
+
+            </div>
+
 
             <x-form.input-text label="Nombre" name="name" :value="$address->name" />
 

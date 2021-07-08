@@ -5,6 +5,7 @@ require('./LocationPicker');
 require('./VecinxsMap');
 require('./RemoteModal');
 require('./RemoteForm');
+require('./AddressForm');
 require('./NeighbourForm');
 
 

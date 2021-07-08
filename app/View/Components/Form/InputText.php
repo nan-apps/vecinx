@@ -12,14 +12,16 @@ class InputText extends Component
     public $value;
     public $mode;
     public $placeholder;
+    public $helpText;
 
-    function __construct($label, $name, $value=NULL, $mode=NULL, $placeholder=NULL)
+    function __construct($label, $name, $value=null, $mode=null, $placeholder=null, $helpText=null)
     {
         $this->label = $label;
         $this->name = $name;
         $this->mode = $mode;
         $this->value = $value;
         $this->placeholder = $placeholder;
+        $this->helpText = $helpText;
     }
 
    

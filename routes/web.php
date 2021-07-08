@@ -36,6 +36,18 @@ Route::resource('members', MemberController::class)
 Route::resource('neighbours', NeighbourController::class)
 ->middleware(['auth']);
 
+Route::get('/addresses/success', [AddressController::class, 'success'])
+->name('addresses.success')
+->middleware(['auth']);
+
+Route::get('/addresses/move_up/{address}', [AddressController::class, 'moveUp'])
+->name('addresses.moveUp')
+->middleware(['auth']);
+
+Route::get('/addresses/move_down/{address}', [AddressController::class, 'moveDown'])
+->name('addresses.moveDown')
+->middleware(['auth']);
+
 Route::resource('addresses', AddressController::class)
 ->middleware(['auth']);
 

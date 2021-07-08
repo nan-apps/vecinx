@@ -28,7 +28,6 @@ window.RemoteModal = class RemoteModal{
       alert("Error obteniendo datos");
       console.log(response);
     }
-      
 
     }).catch(function (error) {
       console.log(error);
